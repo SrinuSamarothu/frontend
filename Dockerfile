@@ -1,8 +1,14 @@
-FROM node:alpine AS build
-WORKDIR /app
-COPY . .
-RUN npm ci && npm run build
+FROM node:alpine as builder
 
-FROM nginx:alpine
-COPY --from=build /app/dist/* /usr/share/nginx/html/
-EXPOSE 80
+WORKDIR /app
+
+COPY . .
+
+
+RUN npm install
+
+RUN npm run build 
+
+FROM nginx
+
+COPY --from=builder /app/dist/hms /usr/share/nginx/html
