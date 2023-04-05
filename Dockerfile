@@ -1,8 +1,9 @@
-FROM node:alpine AS build
+FROM node:latest AS node
 WORKDIR /app
 COPY . .
-RUN npm ci && npm run build
+RUN npm install
+RUN npm run build --prod
 
 FROM nginx:alpine
-COPY --from=build /app/dist/hms /usr/share/nginx/html/
+COPY --from=node /app/dist/hms /usr/share/nginx/html/
 EXPOSE 80
