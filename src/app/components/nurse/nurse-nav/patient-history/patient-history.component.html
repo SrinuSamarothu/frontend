@@ -1,0 +1,83 @@
+<!-- <mat-card class="example-card history-cards" *ngFor="let history of histories">
+    <mat-card-header>
+        <h4><mat-card-title>Date : {{history.date}}</mat-card-title></h4> -->
+        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+    <!-- </mat-card-header>
+    <mat-card-content>
+        <div><label>Medicines : </label>{{history.medicines}}</div>
+        <div><label>Test : </label>{{history.tests}}</div>
+    </mat-card-content>
+</mat-card> -->
+
+<mat-toolbar color="primary" style="gap: 2rem; display: flex; justify-content: space-between;">
+  <button mat-icon-button matTooltip="go back" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span style="font-size: 1rem;">Patients details</span>
+</mat-toolbar>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+<app-complete-history>
+</app-complete-history>
+
+<!-- 
+<li *ngFor="let i of phistory">
+<mat-card class="example-card">
+    <mat-card-header>
+      <div class="card-head">
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Appointment 1</mat-card-title>
+        <mat-card-subtitle>{{i.data_Time}}</mat-card-subtitle>
+      </div>
+    </mat-card-header>
+    <mat-divider></mat-divider>
+    
+    <mat-card-content class="card">
+    
+      <h3>Basic Details</h3>
+      <div class="card-desp">
+        <span>BP</span>
+        <p>{{i.bp}}</p>
+      </div>
+      <div class="card-desp">
+        <span>SpO2</span>
+        <p>{{i.spO2}}</p>
+      </div>
+      <div class="card-desp">
+        <span>Heart Rate</span>
+        <p>{{i.heart_Rate}}</p>
+      </div>
+      <div class="card-desp">
+        <span>Height</span>
+        <p>{{i.height}}</p>
+      </div>
+      <div class="card-desp">
+        <span>Weight</span>
+        <p>{{i.weight}}</p>
+      </div>
+      <div class="card-desp">
+        <span>Temparature</span>
+        <p>{{i.temperature}}</p>
+      </div>
+    
+      
+      <mat-divider style="margin-bottom: 0.5rem;"></mat-divider>
+    <li *ngFor="let j of ptest">
+      <h3>Tests {{i}}</h3>
+      <ol>
+        <div class="card-desp">
+          <li>Blood Test</li>
+          <p>{{j.test}}</p>
+        </div>
+      </ol>
+      <mat-divider style="margin-bottom: 0.5rem;"></mat-divider>
+      <h3>Drugs</h3>
+      <ol>
+        <li>{{j.drugs}}</li>
+      </ol>
+    </mat-card-content>
+  
+  </mat-card>
+
+
+</li> -->

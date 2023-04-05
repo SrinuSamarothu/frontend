@@ -1,0 +1,45 @@
+<body class="container">
+    <app-nurse-nav></app-nurse-nav><br><br><br>
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+      <h1>Hello {{nurseName}}</h1>
+      <h3>Patients for today - {{today | date : 'EEEE'}}</h3>
+      <h3>Patients for today - {{nursePatientAppointments.length}}</h3>
+    </div>
+    <h3 *ngIf="nursePatientAppointments.length <= 0" style="color: red; text-align: center;">No appointments for today</h3>
+    <mat-accordion class="example-headers-align" multi=false>
+      <!-- <mat-expansion-panel style="margin-bottom: 1rem;" *ngFor="let app of appointmentdoctor"> -->
+      <mat-expansion-panel style="margin-bottom: 1rem;" *ngFor="let app of nursePatientAppointments">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <div [ngSwitch]="app.patient.gender" class="icon-gap">
+              <mat-icon *ngSwitchCase="'male'">male</mat-icon>
+              <mat-icon *ngSwitchCase="'Male'">male</mat-icon>
+              <mat-icon *ngSwitchCase="'female'">female</mat-icon>
+              <mat-icon *ngSwitchCase="'Female'">female</mat-icon>
+              <mat-icon *ngSwitchDefault>account_circle</mat-icon>
+          </div>
+            {{app.patient.fullname}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <!-- {{app}} -->
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-divider></mat-divider>
+        <!-- <div style="display: flex; align-items: center; justify-content: center;">
+            <button matTooltip="Update basic details for the patient" (click)="navigateToUpdate(app.appointment.patientId)"  mat-button color="primary">Update</button>
+            <button matTooltip="View patient history" (click)="navigateToViewHistory(app.appointment.patientId)" mat-button color="primary">History</button>
+        </div> -->
+        <div class="example-button-row">
+          <button class="btn-bottom-border" extended mat-button color="accent"
+            matTooltip="View patient's health history" (click)="navigateToViewHistory(app.appointment.patientId)">
+            <mat-icon>visibility</mat-icon>Health history
+          </button>
+          <button  class="btn-bottom-border" extended mat-button color="warn" matTooltip="Add patient's basic health details"
+          (click)="navigateToUpdate(app.appointment.patientId, app.appointment.appointmentId)">
+            <mat-icon>add</mat-icon>Add basic health
+          </button>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+</body>

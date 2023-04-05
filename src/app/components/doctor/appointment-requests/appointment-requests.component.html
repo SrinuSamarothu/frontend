@@ -1,0 +1,68 @@
+
+<p >
+    <mat-toolbar color="primary">
+    <button mat-icon-button matTooltip="go back" (click)="navToDashboard()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    <span class="example-spacer"></span>
+    <span>Appointments requests</span>
+    </mat-toolbar>
+  </p>
+
+<div class="inner2">
+    <br>
+    <div class="request-container">
+    <mat-card style="margin-bottom: 1rem;">
+        <mat-card-content>
+            <div class="appointment-card" style="display: flex; justify-content: center; align-items: center;">
+                <mat-icon class="assignment-icon">assignment</mat-icon>
+                <span style="font-size: 1rem; font-weight: 500; color: rgb(237, 97, 97); text-align: center;">Appointment requests</span>
+            </div>
+        </mat-card-content>
+    </mat-card>
+    
+    <div *ngFor="let pa of patientAppointmentInfo">
+      <mat-accordion class="patient-container patient-container-2" multi="false">
+        <mat-expansion-panel style="margin-bottom: 0.1rem; display: flex; justify-content: center; flex-direction: column;"  class="expansions" *ngIf="pa.appointment.status==0">
+            <mat-expansion-panel-header>
+                <mat-panel-title class="gender-icon-gap">
+                    <div [ngSwitch]="pa.patient.gender">
+                        <mat-icon *ngSwitchCase="'male'">male</mat-icon>
+                        <mat-icon *ngSwitchCase="'Male'">male</mat-icon>
+                        <mat-icon *ngSwitchCase="'female'">female</mat-icon>
+                        <mat-icon *ngSwitchCase="'Female'">female</mat-icon>
+                        <mat-icon *ngSwitchDefault>account_circle</mat-icon>
+                    </div>
+                    <button #x [value]="pa.appointment.appointmentId" style="display: none;"></button>
+                    <!-- {{x.value}} - {{appointment.name}} -->
+                    {{pa.patient.fullname}} 
+                </mat-panel-title>
+                <mat-panel-description>
+                    {{pa.appointment.date}}
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <div class="example-button-row">
+                <br>
+                <p></p>
+                <button class="btn-bottom-border first-btn" extended mat-button color="accent" style="color: green;"
+                    disabled="true">
+                    Booked appointment for <br>{{pa.appointment.date}}
+                </button>
+                <span class="example-spacer2"></span>
+                <button class="btn-bottom-border" extended mat-button color="accent" style="color: green;" (click)="updateStatusByDoctor(pa.appointment.appointmentId,1)"
+                    matTooltip="accept request" (click)="pa.appointment.status=1" (click)="Approve(pa.patient.fullname, pa.patient.email, pa.appointment.date)">
+                    <mat-icon>done</mat-icon>Accept
+                </button>
+                <button class="btn-bottom-border" extended mat-button color="accent" style="color: red;" (click)="updateStatusByDoctor(pa.appointment.appointmentId,2)"
+                    matTooltip="reject request" (click)="pa.appointment.status=2" (click)="Decline(pa.patient.fullname, pa.patient.email, pa.appointment.date)">
+                    <mat-icon>clear</mat-icon>Reject
+                </button>
+                <br>
+            </div>
+        </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+    <br>
+    </div>
+</div>
