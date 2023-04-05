@@ -1,14 +1,28 @@
-FROM node:19.5.0-alpine as builder
+# Stage 1: Compile and Build angular codebase
 
-WORKDIR /app
+# Use official node image as the base image
+FROM node:latest as build
 
-COPY . .
+# Set the working directory
+WORKDIR /usr/local/app
+
+# Add the source code to app
+COPY ./ /usr/local/app/
+
+# Install all the dependencies
+RUN npm install
+
+# Generate the build of the application
+RUN npm run build
 
 
-RUN NODE_ENV=development npm i
+# Stage 2: Serve app with nginx server
 
-RUN npm run build 
+# Use official nginx image as the base image
+FROM nginx:latest
 
-FROM nginx
+# Copy the build output to replace the default nginx contents.
+COPY --from=build /usr/local/app/dist/hms /usr/share/nginx/html
 
-COPY --from=builder /app/dist/hms /usr/share/nginx/html
+# Expose port 80
+EXPOSE 80 443
