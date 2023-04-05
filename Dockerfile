@@ -1,9 +1,14 @@
-#stage 1
-FROM node:latest as node
+FROM node:alpine as builder
+
 WORKDIR /app
+
 COPY . .
+
+
 RUN npm install
-RUN npm run build --prod
-#stage 2
-FROM nginx:alpine
-COPY --from=node /app/dist/hms /usr/share/nginx/html
+
+RUN npm run build 
+
+FROM nginx
+
+COPY --from=builder /app/dist/hms /usr/share/nginx/html
