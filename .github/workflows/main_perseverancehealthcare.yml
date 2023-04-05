@@ -23,14 +23,14 @@ jobs:
       uses: docker/login-action@v1
       with:
         registry: https://index.docker.io/v1/
-        username: ${{ secrets.AzureAppService_ContainerUsername_0cc29dab1b5a488881088d57d79e883a }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_7eafccefd8074f36b15ab1b715ed88da }}
+        username: ${{ secrets.AzureAppService_ContainerUsername_5043036811f14d28a5a3e6595869121b }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_9c2fd5c96771424ba20f3df05831196c }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v2
       with:
         push: true
-        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0cc29dab1b5a488881088d57d79e883a }}/manoj1128/ui:${{ github.sha }}
+        tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_5043036811f14d28a5a3e6595869121b }}/ui:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'perseverancehealthcare'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_06d0d42995f7463791565973dd4a24f5 }}
-        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_0cc29dab1b5a488881088d57d79e883a }}/manoj1128/ui:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_44ccbe862e6641158cf642c8d2c52a5d }}
+        images: 'index.docker.io/${{ secrets.AzureAppService_ContainerUsername_5043036811f14d28a5a3e6595869121b }}/ui:${{ github.sha }}'
