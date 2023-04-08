@@ -10,13 +10,15 @@ export class RegisterLoginService {
   Rurl = "http://localhost:5103/apigateway/AddPatient"
   Lurl = "/api/PatientLogin/Add"
   // UserExists = "http://localhost:5103/apigateway/LoginGet"
+
   getUser(email : string, password : string){
     let params = new HttpParams()
     params = params.append('email', email)
     params = params.append('password', password)
-    return this.http.get('/api/PatientLogin/Get', {params : params, observe: 'response'})
+    return this.http.get('/api/PatientLogin/Get', {params : params})
       .pipe(catchError(err => of('error',err)))
   }
+  
   addNewUser(user : User) {
     return this.http.post<User>(this.Rurl, user)
       .pipe(catchError(err => of('error',err)))
