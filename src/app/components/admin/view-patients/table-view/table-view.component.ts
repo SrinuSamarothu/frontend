@@ -22,7 +22,7 @@ export class TableViewComponent implements OnInit{
       setTimeout(() => {
         this.patients = data
         this.isLoaded = false
-        this.displayedColumns = ['created', 'fullname', 'email', 'gender', 'adressLine', 'city', 'state'];
+        this.displayedColumns = ['created', 'fullname', 'email', 'age', 'gender', 'adressLine', 'city', 'state'];
         this.dataSource = new MatTableDataSource(this.patients)
       }, 3000);
     })
