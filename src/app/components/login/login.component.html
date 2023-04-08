@@ -28,7 +28,7 @@
         </button>
       </mat-form-field>
     </div>  
-    <button (click)="patientLogin()" mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+    <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
     <span>Don't have an account? <a matTooltip="go to registration page" (click)="NavigateToSignUp()" style="cursor: pointer; text-decoration: underline; color: blue;">SignUp</a>    </span>
   </div>
 </form>

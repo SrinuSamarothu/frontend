@@ -9,7 +9,7 @@ export class RegisterLoginService {
   constructor(private http: HttpClient) {}
   Rurl = "http://localhost:5103/apigateway/AddPatient"
   Lurl = "/api/PatientLogin/Add"
-  UserExists = "http://localhost:5103/apigateway/LoginGet"
+  // UserExists = "http://localhost:5103/apigateway/LoginGet"
   getUser(email : string, password : string){
     let params = new HttpParams()
     params = params.append('email', email)

@@ -75,6 +75,7 @@ export class LoginComponent implements OnInit{
   isLoading = false
   hide = true
   patientLogin(){
+    console.log(this.loginForm)
     this.isLoading = true
     this.PatientloginService.getUser(this.loginForm.getRawValue().email, this.loginForm.getRawValue().password)
       .subscribe((data) => {
