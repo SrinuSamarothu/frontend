@@ -8,9 +8,9 @@ import { catchError, of } from 'rxjs';
 export class NurseService {
 
   constructor(private http : HttpClient) { }
-
+  gatewayUrl = "http://localhost:5103/apigateway/AddNurse"
   addNurse(nurse : Nurse){
-    return this.http.post("http://localhost:5103/apigateway/AddNurse", nurse)
+    return this.http.post("127.0.0.1/api/Nurse/AddNurse", nurse)
     .pipe(catchError(err => of('error',err)))
   }
 }

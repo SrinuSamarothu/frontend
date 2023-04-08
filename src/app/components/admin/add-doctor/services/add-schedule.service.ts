@@ -10,8 +10,8 @@ export class AddScheduleService {
   Docemail !: string | undefined
 
   constructor(private http: HttpClient) { }
-
+  gatewayUrl = "http://localhost:5103/apigateway/DoctorByEmail"
   AddSchedule(email : string) {
-    return this.http.get<any>(`http://localhost:5103/apigateway/DoctorByEmail/${email}`);
+    return this.http.get<any>(`127.0.0.1/api/Doctor/GetByEmail?e=${email}`);
   }
 }
