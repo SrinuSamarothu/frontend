@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Guid } from 'guid-typescript';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Observable, catchError, of, throwError } from 'rxjs';
 
 @Injectable({
@@ -9,10 +8,13 @@ import { Observable, catchError, of, throwError } from 'rxjs';
 export class RegisterLoginService {
   constructor(private http: HttpClient) {}
   Rurl = "http://localhost:5103/apigateway/AddPatient"
-  Lurl = "http://localhost:5103/apigateway/LoginAdd"
+  Lurl = "/api/PatientLogin/Add"
   UserExists = "http://localhost:5103/apigateway/LoginGet"
   getUser(email : string, password : string){
-    return this.http.get(`http://localhost:5103/apigateway/LoginGet/${email}/${password}`)
+    let params = new HttpParams()
+    params = params.append('email', email)
+    params = params.append('password', password)
+    return this.http.get('/api/PatientLogin/Get', {params : params, observe: 'response'})
       .pipe(catchError(err => of('error',err)))
   }
   addNewUser(user : User) {
