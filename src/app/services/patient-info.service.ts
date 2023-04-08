@@ -16,13 +16,13 @@ export class PatientInfoService {
   baseapiurl: string = 'http://localhost:5103';
 
   getAllPatientInfos() {
-    return this.http.get<PatientInfo[]>(`http://localhost:5103/apigateway/GetAllPatients`);
+    return this.http.get<PatientInfo[]>(`/api/PatientInfo/GetallPatientInfo`);
   }
 
 
   getPatientInfo(patientId : string | undefined | null) : Observable<patientinfo>{
 
-    return this.http.get<patientinfo>(`${this.baseapiurl}/apigateway/PatientById/${patientId}`);
+    return this.http.get<patientinfo>(`/api/PatientInfo/GetPatientInfobyId/${patientId}`);
   }
 }
 

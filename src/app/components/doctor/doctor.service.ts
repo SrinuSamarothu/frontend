@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { from, Observable } from 'rxjs';
 import { Doctor } from '../admin/add-doctor/doctor';
 
@@ -10,8 +10,10 @@ export class DoctorService {
 
   constructor(private http : HttpClient) { }
 
-  getDoctorByEmail(email : string | undefined) : Observable<Doctor> {
-    return this.http.get<Doctor>(`http://localhost:5103/apigateway/DoctorByEmail/${email}`)
+  getDoctorByEmail(email : string) : Observable<Doctor> {
+    let params = new HttpParams()
+    params = params.append('e', email)
+    return this.http.get<Doctor>("/api/Doctor/GetByEmail", {params : params})
   }
 }
 

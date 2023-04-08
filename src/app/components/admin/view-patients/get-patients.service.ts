@@ -8,7 +8,7 @@ export class GetPatientsService {
 
   constructor(private http : HttpClient) { }
   getAllData(){
-    return this.http.get<Patient[]>("http://localhost:5103/apigateway/GetAllPatients")
+    return this.http.get<Patient[]>("/api/PatientInfo/GetallPatientInfo")
   }
 }
 

@@ -21,7 +21,7 @@ export class LoginService {
   }
 
   getPatientByEmail(email : string | null):Observable<PatientInfo[]> {
-    return this.http.get<PatientInfo[]>(`http://localhost:5103/apigateway/PatientByEmail/${email}`)
+    return this.http.get<PatientInfo[]>(`/api/PatientInfo/GetPatientInfobyemail/${email}`)
   }
   getDoctorByEmail(email:string){
     return this.http.get<Doctor>(`/api/Doctor/GetByEmail?e=${email}`)
