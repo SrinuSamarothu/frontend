@@ -24,11 +24,11 @@ export class LoginService {
     return this.http.get<PatientInfo[]>(`http://localhost:5103/apigateway/PatientByEmail/${email}`)
   }
   getDoctorByEmail(email:string){
-    return this.http.get<Doctor>(`127.0.0.1/api/Doctor/GetByEmail?e=${email}`)
+    return this.http.get<Doctor>(`/api/Doctor/GetByEmail?e=${email}`)
   }
 
   getNurseByEmail(email:string){
-    return this.http.get<Nurse>(`127.0.0.1/api/Nurse/getByEmail?e=${email}`)
+    return this.http.get<Nurse>(`/api/Nurse/getByEmail?e=${email}`)
   }
 }
 

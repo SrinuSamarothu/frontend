@@ -12,6 +12,6 @@ export class AddScheduleService {
   constructor(private http: HttpClient) { }
   gatewayUrl = "http://localhost:5103/apigateway/DoctorByEmail"
   AddSchedule(email : string) {
-    return this.http.get<any>(`127.0.0.1/api/Doctor/GetByEmail?e=${email}`);
+    return this.http.get<any>(`/api/Doctor/GetByEmail?e=${email}`);
   }
 }
