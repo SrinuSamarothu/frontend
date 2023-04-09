@@ -15,11 +15,11 @@ export class AvailabilityService {
   }
 
   UpdateDaySchedule(day: number, sch : Schedule[]) {
-    return this.http.put<Schedule[]>(`/api/PhysicianAvailability/UpdateAllSchedules/${day}`, sch);
+    return this.http.put<Schedule[]>(`/api/PhysicianAvailability/UpdateAllSchedules?day=${day}`, sch);
   }
 
   GetDaySchedule(day: string) {
-    return this.http.get<Schedule[]>(`/api/PhysicianAvailability/GetSchedule/${day}`);
+    return this.http.get<Schedule[]>(`/api/PhysicianAvailability/GetSchedule?day=${day}`);
   }
 }
 export interface Schedule {
