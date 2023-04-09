@@ -68,10 +68,10 @@ export class UpdateinfoComponent implements OnInit {
       allergy: ['', []]
     });
     this.getAllAllergy()
-    let toppingList: string[] = ['peanuts', 'tree nuts', 'dairy', 'soy', 'gluten', 'egg', 'fish', 'shellfish', 'corn', 'sesame', 'coconut', 'mustard'];
     
   }
-
+  
+  toppingList: string[] = ['peanuts', 'tree nuts', 'dairy', 'soy', 'gluten', 'egg', 'fish', 'shellfish', 'corn', 'sesame', 'coconut', 'mustard'];
 
   allergies = new FormControl('');
 
