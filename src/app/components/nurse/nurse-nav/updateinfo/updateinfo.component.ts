@@ -36,6 +36,14 @@ export class UpdateinfoComponent implements OnInit {
 
   form1 !: form
 
+
+  
+  getAllAllergy(){
+    this.Updatebasicrecord.getAllAllergy().subscribe(data=>{
+      console.log(data)
+    })
+  }
+
   ngOnInit(): void {
 
     this.route.params.subscribe((data) => {
@@ -59,12 +67,14 @@ export class UpdateinfoComponent implements OnInit {
       health_Id: this.patId,
       allergy: ['', []]
     });
+    this.getAllAllergy()
+    let toppingList: string[] = ['peanuts', 'tree nuts', 'dairy', 'soy', 'gluten', 'egg', 'fish', 'shellfish', 'corn', 'sesame', 'coconut', 'mustard'];
+    
   }
 
 
   allergies = new FormControl('');
 
-  toppingList: string[] = ['peanuts', 'tree nuts', 'dairy', 'soy', 'gluten', 'egg', 'fish', 'shellfish', 'corn', 'sesame', 'coconut', 'mustard'];
 
 
 

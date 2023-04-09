@@ -32,7 +32,10 @@ export class UpdatebasicrecordService {
     return this.http.post<details>('http://localhost:5103/apigateway/AddPatientRecord',data)
   }
   savealergy(data:allergyex){
-    return this.http.post<allergyex>('http://localhost:5103/apigateway/AddPatientAllergy',data)
+    return this.http.post<allergyex>('/api/Allergy/AddAllergy',data)
+  }
+  getAllAllergy(){
+    return this.http.get('/api/Allergy/GetAllergies')
   }
 
   // public updatePost(postData: details) {
