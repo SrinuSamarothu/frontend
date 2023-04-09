@@ -11,15 +11,15 @@ export class AvailabilityService {
   constructor(private http : HttpClient) { }
 
   AddSchedule(sch : Schedule) : Observable<Schedule> {
-    return this.http.post<Schedule>('http://localhost:5103/apigateway/AddDoctorSchedule', sch);
+    return this.http.post<Schedule>('/api/PhysicianAvailability/AddSchedule', sch);
   }
 
   UpdateDaySchedule(day: number, sch : Schedule[]) {
-    return this.http.put<Schedule[]>(`http://localhost:5103/apigateway/UpdateAllSchedule/${day}`, sch);
+    return this.http.put<Schedule[]>(`/api/PhysicianAvailability/UpdateAllSchedules/${day}`, sch);
   }
 
   GetDaySchedule(day: string) {
-    return this.http.get<Schedule[]>(`http://localhost:5103/apigateway/GetScheduleByDay/${day}`);
+    return this.http.get<Schedule[]>(`/api/PhysicianAvailability/GetSchedule/${day}`);
   }
 }
 export interface Schedule {

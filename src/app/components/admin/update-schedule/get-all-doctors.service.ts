@@ -10,6 +10,6 @@ export class GetAllDoctorsService {
   constructor(private http : HttpClient) { }
 
   getAll(){
-    return this.http.get<Doctor[]>("http://localhost:5103/apigateway/GetAllDoctor");
+    return this.http.get<Doctor[]>("/api/Doctor/getAllDoctor");
   }
 }
