@@ -8,8 +8,8 @@ export class CompleteInfoService {
 
   constructor(private http : HttpClient) { }
 
-  API_URL : string = "http://localhost:5103/apigateway/GetCompleteInfo/ByPatientId/"
-  API_URL_DOC : string = "http://localhost:5103/apigateway/GetById/"
+  API_URL : string = "/api/History/GetCompleteHistory/"
+  API_URL_DOC : string = "/api/Doctor/byId?id="
   getCompleteInfo(pid:string | undefined){
     let headers: HttpHeaders = new HttpHeaders();
     headers = headers.append('Accept', 'application/json');
