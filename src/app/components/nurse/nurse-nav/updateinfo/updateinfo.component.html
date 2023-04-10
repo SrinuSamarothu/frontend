@@ -94,29 +94,29 @@
     <div>
       <button mat-raised-button color="primary" id="but" [disabled]="!updateform.valid">submit</button>
     </div>
-    <form [formGroup]="allrgyForm" (ngSubmit)="updateAllergy()">
-    <div class="updateformallergy">
-      <div>
-        <mat-form-field appearance="outline">
-          <mat-label>Allergies</mat-label>
-          <mat-select [formControl]="allergies" multiple>
-            <mat-select-trigger>
-              {{allergies.value?.[0] || ''}}
-              <span *ngIf="(allergies.value?.length || 0) > 1" class="example-additional-selection">
-                (+{{(allergies.value?.length || 0) - 1}} {{allergies.value?.length === 2 ? 'other' : 'others'}})
-              </span>
-            </mat-select-trigger>
-            <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <div>
-        <button mat-raised-button color="primary" id="but" [disabled]="disbleAllergy" type="button">Add
-        </button>
-      </div>
-    </div>
-  </form>
   </div>
+</form>
+<form [formGroup]="allrgyForm" (ngSubmit)="updateAllergy()">
+<div class="updateformallergy">
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Allergies</mat-label>
+      <mat-select [formControl]="allergies" multiple>
+        <mat-select-trigger>
+          {{allergies.value?.[0] || ''}}
+          <span *ngIf="(allergies.value?.length || 0) > 1" class="example-additional-selection">
+            (+{{(allergies.value?.length || 0) - 1}} {{allergies.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+        </mat-select-trigger>
+        <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" id="but" [disabled]="disbleAllergy" type="button">Add
+    </button>
+  </div>
+</div>
 </form>
   
 
