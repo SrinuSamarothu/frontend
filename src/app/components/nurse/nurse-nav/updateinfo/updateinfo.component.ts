@@ -72,8 +72,8 @@ export class UpdateinfoComponent implements OnInit {
       weight: ['', [Validators.required, Validators.pattern('^([1-5]?[0-9][0-9])$')]],
       temperature: ['', [Validators.required, Validators.pattern('^([3-9][0-9]|[1-9][0-9]{2})\.?[0-9]?$')]],
       bloodGroup: ['', [Validators.required]],
-      health_Id: this.patId,
-      allergy: ['', []]
+      // health_Id: this.patId,
+      // allergy: ['', []]
     });
     this.getAllAllergy()
     
