@@ -127,33 +127,33 @@ export class UpdateinfoComponent implements OnInit {
 
   updateAllergy() {
     console.log(this.allergies.value?.length);
-    // let count : number = 0
-    // if (this.updateform.valid) {
-    //   console.log(this.allergies.value?.at(0))
-    //   let len = Number(this.allergies.value?.length)
-    //   console.log(this.allergies.value)
-    //   for (let i = 0; i < len; i++) {
-    //     this.form1.allergy = this.allergies.value?.at(i)
-    //     console.log(this.allergies.value?.at(i))
-    //     console.log(this.form1)
-    //     this.Updatebasicrecord.savealergy(this.form1).subscribe((data) => {
-    //       console.log(data);
-    //       if(data){
-    //         count++
-    //       }
-    //     })
-    //   }
-    //     this.appoint.updateStatusByDoctor(this.appointmentId, 4).subscribe((data) => {
-    //       console.log(data)
-    //     })
-    //     this.openDialog('20ms','20ms');
+    let count : number = 0
+    if (this.updateform.valid) {
+      console.log(this.allergies.value?.at(0))
+      let len = Number(this.allergies.value?.length)
+      console.log(this.allergies.value)
+      for (let i = 0; i < len; i++) {
+        this.form1.allergy = this.allergies.value?.at(i)
+        console.log(this.allergies.value?.at(i))
+        console.log(this.form1)
+        this.Updatebasicrecord.savealergy(this.form1).subscribe((data) => {
+          console.log(data);
+          if(data){
+            count++
+          }
+        })
+      }
+        this.appoint.updateStatusByDoctor(this.appointmentId, 4).subscribe((data) => {
+          console.log(data)
+        })
+        this.openDialog('20ms','20ms');
 
-    // }
-    // else {
-    //   // show error message
-    //   console.log(this.updateform);
-    //   alert('Invalid form');
-    // }
+    }
+    else {
+      // show error message
+      console.log(this.updateform);
+      alert('Invalid form');
+    }
   }
 
   openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
