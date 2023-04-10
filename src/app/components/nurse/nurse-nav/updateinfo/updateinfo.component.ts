@@ -127,6 +127,7 @@ export class UpdateinfoComponent implements OnInit {
 
   
   addAllr(){
+    console.log(this.allergies.value)
     for (let index = 0; index < Number(this.allergies.value?.length); index++) {
       this.allArr.push(String(this.allergies.value?.at(index)))
     }
