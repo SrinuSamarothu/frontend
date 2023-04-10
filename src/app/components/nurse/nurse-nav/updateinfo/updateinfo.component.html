@@ -96,7 +96,7 @@
     </div>
   </div>
 </form>
-<form [formGroup]="allrgyForm" (ngSubmit)="updateAllergy()">
+<form [formGroup]="allrgyForm" (ngSubmit)="addAllr()">
 <div class="updateformallergy">
   <div>
     <mat-form-field appearance="outline">
@@ -113,7 +113,7 @@
     </mat-form-field>
   </div>
   <div>
-    <button mat-raised-button color="primary" id="but" [disabled]="disbleAllergy" type="button" (click)="updateAllergy()">Add
+    <button mat-raised-button color="primary" id="but" [disabled]="disbleAllergy" type="button" (click)="addAllr()">Add
     </button>
   </div>
 </div>

@@ -37,7 +37,7 @@ export class UpdateinfoComponent implements OnInit {
   form1 !: form
 
 
-  
+  allArr : string[] = []
   getAllAllergy(){
     this.Updatebasicrecord.getAllAllergy().subscribe(data=>{
       console.log(data)
@@ -123,6 +123,16 @@ export class UpdateinfoComponent implements OnInit {
 
   display() {
     console.log(this.allergies.value?.at(1))
+  }
+
+  
+  addAllr(){
+    for (let index = 0; index < Number(this.allergies.value?.length); index++) {
+      this.allArr.push(String(this.allergies.value?.at(index)))
+    }
+    this.allArr.forEach(element => {
+      console.log(element)
+    });
   }
 
   updateAllergy() {
