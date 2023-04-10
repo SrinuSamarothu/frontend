@@ -29,15 +29,15 @@ export class AddhealthservService {
 
   constructor(private http:HttpClient) {}
   saveHealth(data:healthdata){
-    return this.http.post<healthdata>('http://localhost:5103/apigateway/AddPatientHealthRecord',data)
+    return this.http.post<healthdata>('/api/PHRecord/AddPHRecords',data)
     .pipe(catchError(err => of('error', err)))
   }
   savetest(data:testdata){
-    return this.http.post<testdata>('http://localhost:5103/apigateway/AddPatientTests',data)
+    return this.http.post<testdata>('/api/PTest/AddTestRecords',data)
     .pipe(catchError(err => of('error', err)))
   }
   savemedical(data:medicaldata){
-    return this.http.post<medicaldata>('http://localhost:5103/apigateway/AddPatientDrug',data)
+    return this.http.post<medicaldata>('/api/Medication/AddMedicalRecords',data)
     .pipe(catchError(err => of('error', err)))
   }
 }
