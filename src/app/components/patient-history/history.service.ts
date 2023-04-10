@@ -34,7 +34,7 @@ export class HistoryService {
   }
 
   getPatientBasicRecord(id : string | undefined, AID : string | undefined): Observable<BasicDetails[]>{
-    return this.http.get<BasicDetails[]>(`http://localhost:5103/apigateway/GetBasic/ByPatientId/ByAppointmentId/${id}/${AID}`)
+    return this.http.get<BasicDetails[]>(`/api/History/getBasics/${id}/${AID}`)
     .pipe(catchError(err =>of("err", err)))
   }
 }
