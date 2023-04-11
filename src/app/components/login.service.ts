@@ -31,12 +31,23 @@ export class LoginService {
     return this.http.get<Nurse>(`/api/Nurse/getByEmail?e=${email}`)
   }
 
-  updatePatient(PID:Guid, data:any){
+  updatePatient(PID:Guid, data:updatePatient){
     return this.http.put(`/api/PatientInfo/UpdatePatientinfo?Pat_id=${PID}`, data)
     .pipe(catchError(error=>of('err', error)))
   }
 }
 
+export interface updatePatient{
+    adressLine: string,
+    fullname: string,
+    age: number,
+    gender: string,
+    email: string, 
+    pasword: string,
+    phone: number,
+    state: string,
+    city: string
+}
 
 export interface PatientInfo{
     patId : Guid,
