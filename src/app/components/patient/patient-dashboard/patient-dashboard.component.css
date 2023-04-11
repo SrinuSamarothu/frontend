@@ -2,6 +2,11 @@
   flex: 1 1 auto;
 }
 
+.hisBtn{
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
 .example-action-buttons {
   padding-bottom: 20px;
 }

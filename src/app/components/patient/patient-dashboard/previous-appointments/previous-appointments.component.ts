@@ -16,10 +16,12 @@ export class PreviousAppointmentsComponent implements OnInit {
       id = data[0].patId
       console.log(id)
     })
-    this.service.getAppointment(String(window.localStorage.getItem('patientId'))).subscribe((data)=>{
-      this.appot = data
-      console.log(data)
-    })
+    setTimeout(() => {
+      this.service.getAppointment(String(window.localStorage.getItem('patientId'))).subscribe((data)=>{
+        this.appot = data
+        console.log(data)
+      })      
+    }, 2000)
   }
   appot!:any
 

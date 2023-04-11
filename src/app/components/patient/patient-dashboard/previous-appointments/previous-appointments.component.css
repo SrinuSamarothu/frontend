@@ -1,5 +1,18 @@
-.dot{
+.dot {
   width: 25px;
   height: 25px;
   border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-grp {
+  display: flex;
+  align-content: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.card{
+  margin-bottom: 1rem;
 }
