@@ -14,8 +14,10 @@ export class UpdateHealthComponent {
   constructor(private completeInfo : CompleteInfoService, private activatedRoute: ActivatedRoute,
     private _formBuilder: FormBuilder, private route:Router, private updateHealth : UpdateHealthService) {}
 
-  appointment_Id : string = "ee93e5d4-e48e-4ecd-acd4-c92b953d3fd1"
-  patId : string = "c56b5473-4549-45d2-932b-28fe6c87ea12"
+  // appointment_Id : string = "ee93e5d4-e48e-4ecd-acd4-c92b953d3fd1"
+  // patId : string = "c56b5473-4549-45d2-932b-28fe6c87ea12"
+  appointment_Id !: string
+  patId !: string
 
   patientId !: string
   completeHistory : any
@@ -48,7 +50,7 @@ export class UpdateHealthComponent {
   }
 
   getPatientHealthRecord(){
-    this.completeInfo.getCompleteInfo(this.patId).subscribe((response) => {
+    this.completeInfo.getCompleteInfo(this.patientId).subscribe((response) => {
       this.completeHistory = response.body
       if(this.completeHistory != null){
         this.completeHistory.forEach((history : any) => {
