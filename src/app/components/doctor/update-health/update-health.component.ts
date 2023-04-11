@@ -54,9 +54,9 @@ export class UpdateHealthComponent {
       this.completeHistory = response.body
       if(this.completeHistory != null){
         this.completeHistory.forEach((history : any) => {
+          console.log(history);
           console.log(history.basic[0].appointment_Id, "    ", this.appointment_Id)
           if(history.basic[0].appointment_Id == this.appointment_Id){
-            console.log(history);
             this.currentHealth = history
           }
         })
