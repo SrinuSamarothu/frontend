@@ -7,6 +7,7 @@ import { PickJoiningDateComponent } from './pick-joining-date/pick-joining-date.
 import { AddScheduleService } from './services/add-schedule.service';
 import { FirstScheduleComponent } from './first-schedule/first-schedule.component';
 import { AddedSnackBarComponent } from '../../doctor/added-snack-bar/added-snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-doctor',
@@ -18,13 +19,11 @@ export class AddDoctorComponent implements OnInit {
   selectedSpecialization !: string
 
   constructor(private service : DoctorSeviceService, private fb: FormBuilder, private router: Router,
-    public dialog: MatDialog, private addScheduleService : AddScheduleService) {}
+    public dialog: MatDialog, private addScheduleService : AddScheduleService, private _snackbar : MatSnackBar) {}
 
-    openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-      this.dialog.open(AddedSnackBarComponent, {
-        width: '350px',
-        enterAnimationDuration,
-        exitAnimationDuration,
+    openSnackBar() {
+      this._snackbar.openFromComponent(AddedSnackBarComponent, {
+        duration: 2500,
       });
     }
   ngOnInit(): void {
@@ -53,7 +52,7 @@ export class AddDoctorComponent implements OnInit {
         window.localStorage.setItem("doctorId", JSON.stringify(data.id))
         this.isLoading = false
         // window.alert("Added")
-        this.openDialog('20ms', '20ms')
+        this.openSnackBar()
       }
     })
   }

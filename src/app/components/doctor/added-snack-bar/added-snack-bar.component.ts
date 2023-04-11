@@ -8,6 +8,6 @@ import { DialogComponent } from '../../nurse/dialog/dialog.component';
   styleUrls: ['./added-snack-bar.component.css']
 })
 export class AddedSnackBarComponent {
-  constructor(public dialogRef: MatDialogRef<DialogComponent>) {}
+  // constructor(public dialogRef: MatDialogRef<DialogComponent>) {}
 
 }

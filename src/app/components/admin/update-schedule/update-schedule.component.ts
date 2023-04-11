@@ -10,6 +10,7 @@ import { Doctor } from '../add-doctor/doctor';
 import { InfoComponent } from './info/info.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddedSnackBarComponent } from '../../doctor/added-snack-bar/added-snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface UpdateDoctor {
   name: string;
@@ -34,7 +35,9 @@ export class UpdateScheduleComponent implements OnInit {
   constructor(
     private schedule: AvailabilityService,
     private getAllService: GetAllDoctorsService,
+    private _snackBar : MatSnackBar,
     private dialog : MatDialog
+
   ) {}
 
   currentDate = new Date();
@@ -140,7 +143,7 @@ export class UpdateScheduleComponent implements OnInit {
         this.isLoading = true
         console.log(data)
         this.isLoading = false
-        this.openDialog('20ms', '20ms')
+        this.openSnackBar()
       });
   }
 
@@ -153,11 +156,9 @@ export class UpdateScheduleComponent implements OnInit {
     });
   }
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration : string):void{
-    this.dialog.open(AddedSnackBarComponent, {
-      width: '350px',
-      enterAnimationDuration,
-      exitAnimationDuration
-    })
+  openSnackBar() {
+    this._snackBar.openFromComponent(AddedSnackBarComponent, {
+      duration: 2500,
+    });
   }
 }

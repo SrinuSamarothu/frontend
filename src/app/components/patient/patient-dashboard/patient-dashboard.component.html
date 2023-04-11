@@ -23,11 +23,12 @@
   </button>
 </div>
 <br><br>
-<div *ngIf="patientInfo.length > 0">
+<!-- <div *ngIf="patientInfo.length > 0"> -->
   <div *ngFor="let p of patientInfo">
-        <button mat-stroked-button (click)="NavToPatHistory(p.patId)">View your history</button>  
+        <button *ngIf="patientInfo.length > 0" mat-stroked-button (click)="NavToPatHistory(p.patId)">View your history</button>  
   </div>
-</div><br>
+<!-- </div> -->
+<br>
 <div *ngIf="patientInfo.length === 0">
   <h3>No previous appointments to view</h3>
 </div>

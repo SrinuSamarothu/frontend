@@ -40,7 +40,7 @@ export class AppointmentsComponent implements OnInit {
   }
 
   appointmentsByNursePatient : AppointmentDoctor[] = []
-  isLoading = true;
+  isLoading = false;
   ngOnInit(): void {
     this.auth.user$.subscribe((data) => {
       window.localStorage.setItem('NurseName', String(data?.email?.split("@")[0]))
@@ -51,6 +51,7 @@ export class AppointmentsComponent implements OnInit {
     })
 
     this.appointmentService.getAppointmentsByStatus(3).subscribe((appointmentsBy3) => {
+      this.isLoading = true
       this.patientInfoService.getAllPatientInfos().subscribe((patients) => {
         appointmentsBy3.forEach(appo => {
           patients.forEach(pat => {
@@ -59,13 +60,16 @@ export class AppointmentsComponent implements OnInit {
                 appointment : appo,
                 patient : pat
               })
+              this.isLoading = false
+              if(this.nursePatientAppointments.length == 0){
+                this.isLoading = false
+              }
             }
           })
         })
       })
     })
     console.log(this.nursePatientAppointments)
-    
     this.appointmentService.getAppointmentsByStatus(3).subscribe((data) => {
       this.appointmentsByNursePatient = data
     })

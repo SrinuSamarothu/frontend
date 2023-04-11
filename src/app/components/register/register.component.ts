@@ -107,7 +107,7 @@ export class RegisterComponent implements OnInit{
           // window.alert("click ok continue")
           this.isLoading = false
         }
-        else if(data.body == 1){
+        if(data.body == 1){
           window.alert("Account with this email already exists, please Login!")
           this.router.navigate(['/login'])
           console.log(data)

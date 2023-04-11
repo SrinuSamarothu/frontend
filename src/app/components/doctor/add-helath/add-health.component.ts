@@ -6,6 +6,7 @@ import { Guid } from 'guid-typescript';
 import { formatDate } from '@angular/common';
 import { MatDialog } from '@angular/material/dialog';
 import { AddedSnackBarComponent } from '../added-snack-bar/added-snack-bar.component'
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-health',
@@ -14,7 +15,7 @@ import { AddedSnackBarComponent } from '../added-snack-bar/added-snack-bar.compo
 })
 export class AddHealthComponent {
   constructor(private router: Router,private hserv:AddhealthservService,private fg:FormBuilder, 
-    private activatedRoute: ActivatedRoute, public dialog: MatDialog){}
+    private activatedRoute: ActivatedRoute, public dialog: MatDialog, private _snackBar: MatSnackBar){}
     
   
   // newDate = new Date(this.formatedDate);
@@ -27,11 +28,9 @@ export class AddHealthComponent {
   drugForm !: FormGroup
   isLoading = false
 
-  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
-    this.dialog.open(AddedSnackBarComponent, {
-      width: '350px',
-      enterAnimationDuration,
-      exitAnimationDuration,
+  openSnackBar() {
+    this._snackBar.openFromComponent(AddedSnackBarComponent, {
+      duration: 2500,
     });
   }
   ngOnInit(): void {
@@ -82,7 +81,7 @@ export class AddHealthComponent {
       }
       else if(res){
         // window.alert("Added")
-        this.openDialog('20ms','20ms')
+        this.openSnackBar()
         this.isLoading = false
       }
       else{
@@ -100,7 +99,7 @@ export class AddHealthComponent {
       }
       else if(res){
         // window.alert("Added")
-        this.openDialog('20ms','20ms');
+        this.openSnackBar()
         this.isLoading = false
       }
       else{
@@ -119,7 +118,7 @@ export class AddHealthComponent {
       }
       else if(res){
         // window.alert("Added")
-        this.openDialog('20ms','20ms');
+        this.openSnackBar()
         this.isLoading = false
       }
     })
