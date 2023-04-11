@@ -2,22 +2,22 @@
   <mat-card>
     <mat-card-header>
       <mat-card-title>Appointment {{i+1}}</mat-card-title>
-      <mat-card-subtitle>{{a}}</mat-card-subtitle>
+      <mat-card-subtitle>{{a.date | date : 'dd-MMM-yyyy'}}</mat-card-subtitle>
     </mat-card-header>
     <div *ngIf="a.status == 0">
-      <div class="dot" style="color: yellow;"></div>
-      <span>Pending</span>
+      <span>Pending </span>
+      <span class="dot" style="background-color: yellow;"></span>
     </div>  
     <div *ngIf="a.status == 1">
-      <div class="dot" style="color: green;"></div>
-      <span>Accepted</span>
+      <span>Accepted </span>
+      <span class="dot" style="background-color: green;"></span>
     </div>  
     <div *ngIf="a.status == 2" >
-      <div class="dot" style="color: red;"></div>
-      <span>Rejected</span>
+      <span>Rejected </span>
+      <div class="dot" style="background-color: red;"></div>
     </div>    
-    <div *ngIf="a.status == 4" >
-      <div class="dot" style="color: blue;"></div>
+    <div *ngIf="a.status == 4 || a.status == 3" >
+      <span class="dot" style="background-color: blue;"></span>
       <span>Completed</span>
     </div>  
   </mat-card>
