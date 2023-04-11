@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PreviousAppointmentHistoryService } from '../previous-appointment-history.service';
+import { LoginService } from 'src/app/components/login.service';
 
 @Component({
   selector: 'app-previous-appointments',
@@ -7,10 +8,14 @@ import { PreviousAppointmentHistoryService } from '../previous-appointment-histo
   styleUrls: ['./previous-appointments.component.css']
 })
 export class PreviousAppointmentsComponent implements OnInit {
-  constructor(private service : PreviousAppointmentHistoryService){}
+  constructor(private service : PreviousAppointmentHistoryService, private serv : LoginService){}
   ngOnInit(): void {
     // patientId:"daa9a94b-157e-4130-bdbe-9e2e2847b566"
-    this.service.getAppointment(String(window.localStorage.getItem('patientId'))).subscribe((data)=>{
+    let id
+    this.serv.getPatientByEmail(window.localStorage.getItem('pEmail')).subscribe((data) => {
+      id = data[0].patId
+    })
+    this.service.getAppointment(String(id)).subscribe((data)=>{
       this.appot = data
       console.log(data)
     })
