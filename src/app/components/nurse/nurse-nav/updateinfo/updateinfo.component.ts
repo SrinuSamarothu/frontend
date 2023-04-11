@@ -158,13 +158,14 @@ export class UpdateinfoComponent implements OnInit {
           if(data){
             count++
           }
+          this.isLoading = false
         })
       }
         this.appoint.updateStatusByDoctor(this.appointmentId, 4).subscribe((data) => {
           console.log(data)
         })
         this.openDialog('20ms','20ms');
-        this.isLoading = false
+       
 
     }
     else {

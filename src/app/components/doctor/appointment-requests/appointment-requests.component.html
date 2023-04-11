@@ -7,8 +7,8 @@
     <span class="example-spacer"></span>
     <span>Appointments requests</span>
     </mat-toolbar>
+    <mat-progress-bar  color="accent" style="margin-top: 0.8rem;" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
   </p>
-  <mat-progress-bar color="accent" style="margin-top: 0.8rem;" *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
 
 <div class="inner2">
     <br>

@@ -45,7 +45,7 @@ export class PatientDashboardComponent implements OnInit, AfterViewInit {
     this.show = !this.show;
   }
 
-  NavToPatHistory(p_id : Guid){
+  NavToPatHistory(p_id : Guid | string){
     this.router.navigate(['patient/view/complete/history/', String(p_id)])
   }
   // navToBookApp(){

@@ -40,6 +40,9 @@ export class ShowDoctorsComponent implements OnInit {
                 schedule : sch 
               })
               this.isLoading = false
+              if(this.doctorSchedule.length == 0){
+                this.isLoading = false
+              }
             }
           });
         })

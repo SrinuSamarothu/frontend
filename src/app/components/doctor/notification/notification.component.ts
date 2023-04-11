@@ -196,6 +196,9 @@ export class NotificationComponent implements OnInit {
                 this.isLoading = false
                 console.log(this.patientByAppointments)
                 this.totalPatients = this.patientByAppointments.length;
+                if(this.totalPatients <= 0){
+                  this.isLoading = false 
+                }
               })
                 pushedPatients.push(pat.patId.toString());
                 console.log(pushedPatients)

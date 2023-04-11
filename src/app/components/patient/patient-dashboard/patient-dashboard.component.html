@@ -24,12 +24,10 @@
 </div>
 <br><br>
 <!-- <div *ngIf="patientInfo.length > 0"> -->
-  <div *ngFor="let p of patientInfo">
-        <button *ngIf="patientInfo.length > 0" mat-stroked-button (click)="NavToPatHistory(p.patId)">View your history</button>  
-  </div>
+  <!-- <div *ngFor="let p of patientInfo"> -->
+        <button *ngIf="patientInfo.length > 0" mat-stroked-button (click)="NavToPatHistory('')">View your history</button>  
+  <!-- </div> -->
 <!-- </div> -->
 <br>
-<div *ngIf="patientInfo.length === 0">
-  <h3>No previous appointments to view</h3>
-</div>
+  <h3 *ngIf="patientInfo.length === 0">No previous appointments to view</h3>
 <!-- <app-mini-history-table></app-mini-history-table> -->
