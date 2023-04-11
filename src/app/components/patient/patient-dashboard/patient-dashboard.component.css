@@ -32,3 +32,11 @@ mat-accordion{
   justify-content: center;
   margin: auto;
 }
+
+.app-grp{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: fit-content;
+  margin: auto;
+}
