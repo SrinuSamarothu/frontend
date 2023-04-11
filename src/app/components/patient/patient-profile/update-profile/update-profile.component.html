@@ -8,7 +8,7 @@
   <span class="example-spacer"></span>
 </mat-toolbar>
 <mat-progress-bar *ngIf="isLoading" color="accent" mode="indeterminate"></mat-progress-bar>
-
+<br>
 <form [formGroup]="updateForm" (ngSubmit)="updateData()">
   <div class="container" *ngFor="let pp of pat">
     <div>
@@ -38,7 +38,7 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>Address</mat-label>
-        <input type="text" matInput formControlName="adress_line" placeholder={{pp.adress_line}} />
+        <input type="text" matInput formControlName="adress_line" placeholder={{pp.adressLine}} />
       </mat-form-field>
     </div>
     <div>
@@ -50,7 +50,7 @@
     <div>
       <mat-form-field appearance="outline">
         <mat-label>State</mat-label>
-        <input type="text" matInput formControlName="State" placeholder={{pp.State}} />
+        <input type="text" matInput formControlName="State" placeholder={{pp.state}} />
       </mat-form-field>
     </div>
     <div style="display: flex;flex-direction: column; gap: 1rem; justify-content: center; align-items: center; ">  
