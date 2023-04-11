@@ -7,19 +7,23 @@
     </mat-card-header>
     <div class="dot-grp" *ngIf="a.status == 0">
       <span>Pending </span>
-      <span class="dot" style="background-color: yellow;"></span>
+      <!-- <span class="dot" style="background-color: yellow;"></span> -->
+      <img  class="img" src="https://cdn-icons-png.flaticon.com/512/6811/6811049.png" alt="pending">
     </div>  
     <div class="dot-grp"*ngIf="a.status == 1">
       <span>Accepted </span>
-      <span class="dot" style="background-color: green;"></span>
+      <!-- <span class="dot" style="background-color: green;"></span> -->
+      <img class="img" src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Accepted">
     </div>  
     <div class="dot-grp"*ngIf="a.status == 2" >
       <span>Rejected </span>
-      <div class="dot" style="background-color: red;"></div>
+      <!-- <div class="dot" style="background-color: red;"></div> -->
+      <img class="img" src="https://cdn-icons-png.flaticon.com/512/5978/5978441.png" alt="Rejected">
     </div>    
     <div class="dot-grp"*ngIf="a.status == 4 || a.status == 3" >
       <span>Completed </span>
-      <span class="dot" style="background-color: blue;"></span>
+      <!-- <span class="dot" style="background-color: blue;"></span> -->
+      <img class="img" src="https://cdn-icons-png.flaticon.com/512/1632/1632670.png" alt="Completed">
     </div>  
   </mat-card>
 </div>
