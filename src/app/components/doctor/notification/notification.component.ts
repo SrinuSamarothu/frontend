@@ -109,7 +109,7 @@ export class NotificationComponent implements OnInit {
         AID = pba.appointment.appointmentId
       }
     })
-    this.route.navigate(['update-health', name, PID, AID]);
+    this.route.navigate(['update-health', PID, AID]);
   }
 
   appointmentdoctor: AppointmentDoctor[] = [];
