@@ -30,7 +30,8 @@ export class UpdateHealthComponent {
   });
 
   medication !: Medication 
-
+  test !: Test
+  con !: conclusion
 
   secondFormGroup = this._formBuilder.group({
     test: ['', Validators.required],
@@ -73,8 +74,52 @@ export class UpdateHealthComponent {
       drugs : this.firstFormGroup.getRawValue().drug,
       quantity : this.firstFormGroup.getRawValue().quantity
     }
+
+    
     
     this.updateHealth.updateMedication(this.appontId, this.medication).subscribe((data) => {
+      this.isLoading = true
+      if(data == null) {
+        console.log("Data modified");
+      }
+      else{
+        console.log("Error occured");
+      }
+      this.isLoading = false
+    })
+  }
+
+  updateTest(aid : string) {
+    this.test = {
+      appointment_Id : this.appontId,
+      test : this.secondFormGroup.getRawValue().test,
+      result : this.secondFormGroup.getRawValue().result
+    }
+
+    
+    
+    this.updateHealth.updateTest(this.appontId, this.test).subscribe((data) => {
+      this.isLoading = true
+      if(data == null) {
+        console.log("Data modified");
+      }
+      else{
+        console.log("Error occured");
+      }
+      this.isLoading = false
+    })
+  }
+
+  updateCon(aid : string) {
+    this.con = {
+      appointment_Id : this.appontId,
+      patient_Id : this.patientId,
+      conclusion : this.thirdFormGroup.getRawValue().suggestion
+    }
+
+    
+    
+    this.updateHealth.updateConclu(this.appontId, this.con).subscribe((data) => {
       this.isLoading = true
       if(data == null) {
         console.log("Data modified");
@@ -90,4 +135,16 @@ export class UpdateHealthComponent {
     this.route.navigate(['doctor-dashboard', window.localStorage.getItem('DoctorName'), window.localStorage.getItem('Doctor')]);
   }
 
+}
+
+export interface Test{
+  appointment_Id: string | null,
+  test: string | null,
+  result: string | null
+}
+
+export interface conclusion{
+  patient_Id: string | null,
+  appointment_Id: string | null,
+  conclusion: string | null
 }

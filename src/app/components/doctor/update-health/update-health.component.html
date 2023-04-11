@@ -52,7 +52,7 @@
                             <div class="test-result">
                                 <p>{{medicine.quantity}}</p>
                             </div>
-                        </div><hr>
+                        </div>
                     </mat-card-content>
                 </mat-card>
             </div>
@@ -67,7 +67,7 @@
                             <mat-select formControlName="test">
                                 <div  *ngFor="let medicine of currentHealth.tests">
                                     <mat-option [value]="medicine.test">{{medicine.test}}</mat-option>
-                                </div><hr>
+                                </div>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="outline">
@@ -77,7 +77,8 @@
                     </div>
                     <div>
                         <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
+                        <button mat-button matStepperNext (click)="updateTest(currentHealth.moreInfo[0].appointment_Id)" >Next</button>
+                        
                     </div>
                 </form>
                 <mat-card class="test-card">
@@ -94,7 +95,7 @@
                             </div>
                             <div class="test-result">
                                 <p>{{medicine.result}}</p>
-                            </div><hr>
+                            </div>
                         </div>
                     </mat-card-content>
                 </mat-card>
@@ -110,10 +111,7 @@
                             <input matInput required formControlName="suggestion" [value]="currentHealth.moreInfo[0].conclusion">
                         </mat-form-field>
                     </div>
-                    <div>
-                        <button mat-button matStepperPrevious>Back</button>
-                        <button mat-button matStepperNext>Next</button>
-                    </div>
+                    
                     <mat-card class="test-card">
                         <mat-card-header class="test-title">
                             <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
@@ -129,6 +127,10 @@
                             </div>
                         </mat-card-content>
                     </mat-card>
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext (click)="updateCon(currentHealth.moreInfo[0].appointment_Id)">Next</button>
+                    </div>
                 </div>
             </form>
         </mat-step>
@@ -136,6 +138,6 @@
 </div>
 
 
-<div class="json-data">
+<!-- <div class="json-data">
     {{ currentHealth | json}}
-</div>
+</div> -->
