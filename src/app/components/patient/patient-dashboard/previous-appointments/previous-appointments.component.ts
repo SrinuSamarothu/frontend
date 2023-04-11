@@ -9,6 +9,7 @@ import { LoginService } from 'src/app/components/login.service';
 })
 export class PreviousAppointmentsComponent implements OnInit {
   constructor(private service : PreviousAppointmentHistoryService, private serv : LoginService){}
+  isLoading = false
   ngOnInit(): void {
     // patientId:"daa9a94b-157e-4130-bdbe-9e2e2847b566"
     let id
@@ -18,8 +19,10 @@ export class PreviousAppointmentsComponent implements OnInit {
     })
     setTimeout(() => {
       this.service.getAppointment(String(window.localStorage.getItem('patientId'))).subscribe((data)=>{
+        this.isLoading = true
         this.appot = data
         console.log(data)
+        this.isLoading = false
       })      
     }, 2000)
   }
