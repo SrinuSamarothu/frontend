@@ -29,14 +29,15 @@ export class UpdateProfileComponent implements OnInit {
      });
 
     this.updateForm = this.fb.group({
-      fullname: ['', [ Validators.minLength(3), Validators.maxLength(20)]],
+      email: window.localStorage.getItem('pEmail'),
+      fullname: [''],
       gender : [''],
-      pasword: ['', [ Validators.minLength(3), Validators.maxLength(20)]],
+      pasword: [''],
       age: [''],
       phone: [''],
-      adress_line: ['', Validators.minLength(3), Validators.maxLength(20)],
-      city: ['', [ Validators.minLength(3), Validators.maxLength(20)]],
-      State: ['', [ Validators.minLength(3), Validators.maxLength(20)]],      
+      adressLine: [''],
+      city: [''],
+      state: [''],      
     })
   }
 
