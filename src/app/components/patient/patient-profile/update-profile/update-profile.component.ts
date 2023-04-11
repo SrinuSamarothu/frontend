@@ -43,13 +43,13 @@ export class UpdateProfileComponent implements OnInit {
 
   updateData(){
     console.log(this.updateForm.getRawValue())
-    // this.pat.forEach(element => {
-    //   if(element.email == window.localStorage.getItem("pEmail")){
-    //     this.PID = element.Pat_id
-    //   }
-    //   this.patService.updatePatient(this.PID, this.updateForm.getRawValue()).subscribe((data)=>{
-    //     console.log(data)
-    //   })
-    // });
+    this.pat.forEach(element => {
+      if(element.email == window.localStorage.getItem("pEmail")){
+        this.PID = element.Pat_id
+      }
+      this.patService.updatePatient(this.PID, this.updateForm.getRawValue()).subscribe((data)=>{
+        console.log(data)
+      })
+    });
   }
 }
