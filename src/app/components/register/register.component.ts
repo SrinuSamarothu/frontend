@@ -7,6 +7,7 @@ import { Guid } from 'guid-typescript';
 import { MatStepper } from '@angular/material/stepper';
 import { MatDialog } from '@angular/material/dialog';
 import { AddedSnackBarComponent } from '../doctor/added-snack-bar/added-snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,7 @@ import { AddedSnackBarComponent } from '../doctor/added-snack-bar/added-snack-ba
 })
 export class RegisterComponent implements OnInit{
   constructor(private router : Router, private fb : FormBuilder, private service : RegisterLoginService,
-    private dialog : MatDialog){}
+    private dialog : MatDialog, private _snackBar: MatSnackBar){}
   
   isLoggedIn = true 
   isLoading = false  
@@ -81,17 +82,15 @@ export class RegisterComponent implements OnInit{
       else if(data.status != 400){
         this.isLoading = false
         // window.alert("added!")
-        this.openDialog('20ms','20ms')
+        this.openSnackBar()
         this.router.navigate(['/login'])
       }
     })
   }
 
-  openDialog(enterAnimationDuration:string, exitAnimationDuration:string):void{
-    this.dialog.open(AddedSnackBarComponent,{
-      width: '350px',
-      enterAnimationDuration,
-      exitAnimationDuration
+  openSnackBar(){
+    this._snackBar.openFromComponent(AddedSnackBarComponent, {
+      duration: 2500
     })
   }
 
@@ -107,7 +106,7 @@ export class RegisterComponent implements OnInit{
           // window.alert("click ok continue")
           this.isLoading = false
         }
-        if(data.body == 1){
+        if(data == 1){
           window.alert("Account with this email already exists, please Login!")
           this.router.navigate(['/login'])
           console.log(data)

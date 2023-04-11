@@ -74,6 +74,7 @@ export class UpdateScheduleComponent implements OnInit {
   displayedColumns!: string[];
   selection = new SelectionModel<UpdateDoctor>();
   isLoading = true
+  isUpdating = false
   ngOnInit() {
     this.weekDate = new Date(this.currentDate.getTime() + 604800000);
     this.allNotSelected = false;
@@ -103,6 +104,7 @@ export class UpdateScheduleComponent implements OnInit {
   }
 
   updateSchedule() {
+    this.isUpdating = true
     let dayNum = this.currentDate.getDay();
     let i;
     switch (dayNum) {
@@ -140,9 +142,9 @@ export class UpdateScheduleComponent implements OnInit {
     this.schedule
       .UpdateDaySchedule(dayNum, this.schedules)
       .subscribe((data) => {
-        this.isLoading = true
+        this.isUpdating = true
         console.log(data)
-        this.isLoading = false
+        this.isUpdating = false
         this.openSnackBar()
       });
   }

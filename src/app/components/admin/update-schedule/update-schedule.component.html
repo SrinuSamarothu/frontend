@@ -2,6 +2,7 @@
 <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center; justify-content: center;" class="update-box">
   
   <mat-card class="table-card">
+    <mat-progress-bar mode="indeterminate" color="accent" *ngIf="isUpdating"></mat-progress-bar>
     <br>
     <mat-card-title class="update-title">
       <div class="update-head">

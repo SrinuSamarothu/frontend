@@ -11,7 +11,7 @@
 <h1>Hello! Please login to view your dashboard</h1>
 
 
-<form [formGroup]="loginForm" (ngSubmit)="patientLogin()">
+<form [formGroup]="loginForm">
   <div class="container">
     <div>
       <mat-form-field appearance="outline">
@@ -28,7 +28,7 @@
         </button>
       </mat-form-field>
     </div>  
-    <button mat-raised-button color="primary" [disabled]="!loginForm.valid">Login</button>
+    <button mat-raised-button color="primary" (click)="patientLogin()" [disabled]="!loginForm.valid">Login</button>
     <span>Don't have an account? <a matTooltip="go to registration page" (click)="NavigateToSignUp()" style="cursor: pointer; text-decoration: underline; color: blue;">SignUp</a>    </span>
   </div>
 </form>
