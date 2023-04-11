@@ -14,8 +14,9 @@ export class PreviousAppointmentsComponent implements OnInit {
     let id
     this.serv.getPatientByEmail(window.localStorage.getItem('pEmail')).subscribe((data) => {
       id = data[0].patId
+      console.log(id)
     })
-    this.service.getAppointment(String(id)).subscribe((data)=>{
+    this.service.getAppointment(String(window.localStorage.getItem('patientId'))).subscribe((data)=>{
       this.appot = data
       console.log(data)
     })
