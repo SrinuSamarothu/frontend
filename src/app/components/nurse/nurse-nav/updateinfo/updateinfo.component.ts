@@ -57,7 +57,7 @@ export class UpdateinfoComponent implements OnInit {
     this.allrgyForm = this.fb.group({      
         health_Id: this.patId,
         appointment_Id: this.appId,
-        allergy: ['']
+        allergy: ['', []]
     })
 
     this.updateform = this.fb.group({
