@@ -27,7 +27,8 @@
 }
 
 mat-accordion{
-  padding: 2rem;
   width: 600px;
+  display: flex;
+  justify-content: center;
   margin: auto;
 }
