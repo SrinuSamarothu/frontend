@@ -51,8 +51,8 @@
                             </div>
                             <div class="test-result">
                                 <p>{{medicine.quantity}}</p>
-                            </div><hr>
-                        </div>
+                            </div>
+                        </div><hr>
                     </mat-card-content>
                 </mat-card>
             </div>
@@ -66,8 +66,8 @@
                             <mat-label>Conducted tests</mat-label>
                             <mat-select formControlName="test">
                                 <div  *ngFor="let medicine of currentHealth.tests">
-                                    <mat-option [value]="medicine.test">{{medicine.test}}</mat-option><hr>
-                                </div>
+                                    <mat-option [value]="medicine.test">{{medicine.test}}</mat-option>
+                                </div><hr>
                             </mat-select>
                         </mat-form-field>
                         <mat-form-field appearance="outline">

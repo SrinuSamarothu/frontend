@@ -14,7 +14,7 @@
     margin : 2.5rem;
     display : flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: column-reverse;
     gap : 2rem;
 }
 
