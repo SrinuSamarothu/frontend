@@ -19,7 +19,7 @@ export class UpdateProfileComponent implements OnInit {
   updateForm !: FormGroup
   
   pat : any[] = []
-  PID !: Guid
+  PID !: string | null
   ngOnInit(): void {
     let email = window.localStorage.getItem("pEmail")
      this.patService.getPatientByEmail(email).subscribe((data) => {
@@ -43,13 +43,13 @@ export class UpdateProfileComponent implements OnInit {
 
   updateData(){
     console.log(this.updateForm.getRawValue())
-    this.pat.forEach(element => {
-      if(element.email == window.localStorage.getItem("pEmail")){
-        this.PID = element.Pat_id
-      }
-      this.patService.updatePatient(this.PID, this.updateForm.getRawValue()).subscribe((data)=>{
+      // patientId:"daa9a94b-157e-4130-bdbe-9e2e2847b566"
+      this.PID = window.localStorage.getItem("patientId")
+      this.PID?.toString()
+      let newid = this.PID as unknown as Guid
+      this.patService.updatePatient(newid, this.updateForm.getRawValue()).subscribe((data)=>{
         console.log(data)
       })
-    });
   }
 }
+
