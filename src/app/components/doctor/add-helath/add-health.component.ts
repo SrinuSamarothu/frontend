@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AddhealthservService } from './service/addhealthserv.service';
 import { Guid } from 'guid-typescript';
 import { formatDate } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { AddedSnackBarComponent } from '../added-snack-bar/added-snack-bar.component'
 
 @Component({
   selector: 'app-add-health',
@@ -11,7 +13,8 @@ import { formatDate } from '@angular/common';
   styleUrls: ['./add-health.component.css']
 })
 export class AddHealthComponent {
-  constructor(private router: Router,private hserv:AddhealthservService,private fg:FormBuilder, private activatedRoute: ActivatedRoute){}
+  constructor(private router: Router,private hserv:AddhealthservService,private fg:FormBuilder, 
+    private activatedRoute: ActivatedRoute, public dialog: MatDialog){}
     
   
   // newDate = new Date(this.formatedDate);
@@ -23,6 +26,14 @@ export class AddHealthComponent {
   testForm !: FormGroup
   drugForm !: FormGroup
   isLoading = false
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(AddedSnackBarComponent, {
+      width: '350px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
   ngOnInit(): void {
 
     let formatedDate = new Date().toISOString().slice(0,10)
@@ -70,7 +81,8 @@ export class AddHealthComponent {
         this.isLoading = false
       }
       else if(res){
-        window.alert("Added")
+        // window.alert("Added")
+        this.openDialog('20ms','20ms')
         this.isLoading = false
       }
       else{
@@ -87,7 +99,8 @@ export class AddHealthComponent {
         this.isLoading = false
       }
       else if(res){
-        window.alert("Added")
+        // window.alert("Added")
+        this.openDialog('20ms','20ms');
         this.isLoading = false
       }
       else{
@@ -105,7 +118,8 @@ export class AddHealthComponent {
         this.isLoading = false
       }
       else if(res){
-        window.alert("Added")
+        // window.alert("Added")
+        this.openDialog('20ms','20ms');
         this.isLoading = false
       }
     })

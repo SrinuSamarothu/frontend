@@ -53,6 +53,9 @@ export class PickAppointmentsComponent {
                 doctor : this.doc
               })
               this.isLoading  = false
+              if(this.completeAppointments.length === 0){
+                this.isLoading = false
+              }
             })
           })
         })
@@ -74,7 +77,7 @@ export class PickAppointmentsComponent {
           this.completeAppointments.findIndex(e=>{
             if(e.appointment.appointmentId == appointmentId){
               const idx = this.completeAppointments.indexOf(e)
-              // this.completeAppointments.slice(idx,1)
+              this.completeAppointments.slice(idx,1)
             }
           })
         }        

@@ -22,8 +22,13 @@
   (click)="openDialog('20ms', '20ms')" >Book new appointment
   </button>
 </div>
-
-<div *ngFor="let p of patientInfo">
-      <button mat-stroked-button (click)="NavToPatHistory(p.patId)">View your history</button>  
+<br><br>
+<div *ngIf="patientInfo.length > 0">
+  <div *ngFor="let p of patientInfo">
+        <button mat-stroked-button (click)="NavToPatHistory(p.patId)">View your history</button>  
+  </div>
+</div><br>
+<div *ngIf="patientInfo.length === 0">
+  <h3>No previous appointments to view</h3>
 </div>
 <!-- <app-mini-history-table></app-mini-history-table> -->

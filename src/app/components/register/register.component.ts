@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { RegisterLoginService, User, UserLogin } from './register-login.service';
 import { Guid } from 'guid-typescript';
 import { MatStepper } from '@angular/material/stepper';
+import { MatDialog } from '@angular/material/dialog';
+import { AddedSnackBarComponent } from '../doctor/added-snack-bar/added-snack-bar.component';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +20,8 @@ import { MatStepper } from '@angular/material/stepper';
   ],
 })
 export class RegisterComponent implements OnInit{
-  constructor(private router : Router, private fb : FormBuilder, private service : RegisterLoginService){}
+  constructor(private router : Router, private fb : FormBuilder, private service : RegisterLoginService,
+    private dialog : MatDialog){}
   
   isLoggedIn = true 
   isLoading = false  
@@ -77,9 +80,18 @@ export class RegisterComponent implements OnInit{
       }
       else if(data.status != 400){
         this.isLoading = false
-        window.alert("added!")
+        // window.alert("added!")
+        this.openDialog('20ms','20ms')
         this.router.navigate(['/login'])
       }
+    })
+  }
+
+  openDialog(enterAnimationDuration:string, exitAnimationDuration:string):void{
+    this.dialog.open(AddedSnackBarComponent,{
+      width: '350px',
+      enterAnimationDuration,
+      exitAnimationDuration
     })
   }
 
@@ -92,7 +104,7 @@ export class RegisterComponent implements OnInit{
         if(data.status == 400){
           window.localStorage.setItem("pEmail", this.registerForm1.getRawValue().email)
           window.localStorage.setItem("pPassword", this.registerForm1.getRawValue().pasword)
-          window.alert("click ok continue")
+          // window.alert("click ok continue")
           this.isLoading = false
         }
         else if(data.body == 1){
@@ -114,7 +126,7 @@ export class RegisterComponent implements OnInit{
     // console.log(this.registerForm1.getRawValue());
     this.service.addNewLogin(loginUser).subscribe(data => {
       if(data != 302){
-        window.alert("Click ok to continue")
+        // window.alert("Click ok to continue")
         this.isLoading = false
       }
     }) 

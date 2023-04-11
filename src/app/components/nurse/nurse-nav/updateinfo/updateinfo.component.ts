@@ -36,6 +36,7 @@ export class UpdateinfoComponent implements OnInit {
 
   form1 !: form
 
+  isLoading = false
 
   allArr : string[] = []
   getAllAllergy(){
@@ -87,11 +88,11 @@ export class UpdateinfoComponent implements OnInit {
 
 
   update() {
-
     console.log(this.updateform);
     if (this.updateform.valid) {
       this.Updatebasicrecord.saveUser(this.updateform.getRawValue()).subscribe((result) => {
-        console.log(result);
+        this.isLoading = true
+        console.log(result)
         if (result) {
           this.form1 = {
             patient_Id: result.patient_Id,
@@ -110,6 +111,10 @@ export class UpdateinfoComponent implements OnInit {
           }
           this.disbleAllergy = false
         }
+        else if(!result){
+          this.isLoading = false
+        }
+        this.isLoading = false
       })
     }
     else {
@@ -148,6 +153,7 @@ export class UpdateinfoComponent implements OnInit {
         console.log(this.allergies.value?.at(i))
         console.log(this.form1)
         this.Updatebasicrecord.savealergy(this.form1).subscribe((data) => {
+          this.isLoading = true
           console.log(data);
           if(data){
             count++
@@ -158,6 +164,7 @@ export class UpdateinfoComponent implements OnInit {
           console.log(data)
         })
         this.openDialog('20ms','20ms');
+        this.isLoading = false
 
     }
     else {

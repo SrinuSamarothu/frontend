@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { PickJoiningDateComponent } from './pick-joining-date/pick-joining-date.component';
 import { AddScheduleService } from './services/add-schedule.service';
 import { FirstScheduleComponent } from './first-schedule/first-schedule.component';
+import { AddedSnackBarComponent } from '../../doctor/added-snack-bar/added-snack-bar.component';
 
 @Component({
   selector: 'app-add-doctor',
@@ -18,6 +19,14 @@ export class AddDoctorComponent implements OnInit {
 
   constructor(private service : DoctorSeviceService, private fb: FormBuilder, private router: Router,
     public dialog: MatDialog, private addScheduleService : AddScheduleService) {}
+
+    openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+      this.dialog.open(AddedSnackBarComponent, {
+        width: '350px',
+        enterAnimationDuration,
+        exitAnimationDuration,
+      });
+    }
   ngOnInit(): void {
     this.doctorForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
@@ -43,7 +52,8 @@ export class AddDoctorComponent implements OnInit {
       else if(data){
         window.localStorage.setItem("doctorId", JSON.stringify(data.id))
         this.isLoading = false
-        window.alert("Added")
+        // window.alert("Added")
+        this.openDialog('20ms', '20ms')
       }
     })
   }
@@ -54,6 +64,8 @@ export class AddDoctorComponent implements OnInit {
   toggle(){
     this.show = !this.show
   } 
+
+  
 
   openPickDialog(enterAnimationDuration: string, exitAnimationDuration: string) :void{
     this.dialog.open(PickJoiningDateComponent, {

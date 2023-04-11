@@ -1,5 +1,7 @@
 <body class="container">
-    <app-nurse-nav></app-nurse-nav><br><br><br>
+    <app-nurse-nav></app-nurse-nav>
+    <mat-progress-bar *ngIf="isLoading" mode="indeterminate"></mat-progress-bar>
+    <br><br><br>
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
       <h1>Hello {{nurseName}}</h1>
       <h3>Patients for today - {{today | date : 'EEEE'}}</h3>

@@ -9,6 +9,7 @@ import { GetAllDoctorsService } from './get-all-doctors.service';
 import { Doctor } from '../add-doctor/doctor';
 import { InfoComponent } from './info/info.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AddedSnackBarComponent } from '../../doctor/added-snack-bar/added-snack-bar.component';
 
 export interface UpdateDoctor {
   name: string;
@@ -135,7 +136,12 @@ export class UpdateScheduleComponent implements OnInit {
     }
     this.schedule
       .UpdateDaySchedule(dayNum, this.schedules)
-      .subscribe((data) => console.log(data));
+      .subscribe((data) => {
+        this.isLoading = true
+        console.log(data)
+        this.isLoading = false
+        this.openDialog('20ms', '20ms')
+      });
   }
 
 
@@ -145,5 +151,13 @@ export class UpdateScheduleComponent implements OnInit {
       enterAnimationDuration,
       exitAnimationDuration,
     });
+  }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration : string):void{
+    this.dialog.open(AddedSnackBarComponent, {
+      width: '350px',
+      enterAnimationDuration,
+      exitAnimationDuration
+    })
   }
 }

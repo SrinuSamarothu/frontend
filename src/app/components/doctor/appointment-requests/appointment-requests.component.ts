@@ -33,10 +33,11 @@ export class AppointmentRequestsComponent implements OnInit {
 
   patientEmail : string = String(window.localStorage.getItem('pEmail'))
 
-
+  isLoading = false
   ngOnInit(): void {
     this.appointmentService.getAppointmentsByStatus(0).subscribe((data) => {
       this.appointmentdoctor = data
+      this.isLoading = true
       this.patientInfoService.getAllPatientInfos().subscribe((response) => {
         console.log(response)
         data.forEach(appo => {
@@ -53,6 +54,10 @@ export class AppointmentRequestsComponent implements OnInit {
               console.log(this.appointmentdoctor);
               console.log(this.patientAppointmentInfo)
               console.log("pushed")
+              this.isLoading = false
+              if(this.patientAppointmentInfo.length === 0){
+                this.isLoading = false
+              }
             }
           })
         })

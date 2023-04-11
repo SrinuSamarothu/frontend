@@ -4,6 +4,8 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import { Nurse } from './nurse';
 import { Router } from '@angular/router';
 import { NurseService } from './nurse.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddedSnackBarComponent } from '../../doctor/added-snack-bar/added-snack-bar.component';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -19,7 +21,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./add-nurse.component.css']
 })
 export class AddNurseComponent implements OnInit{
-  constructor(private router: Router, private fb : FormBuilder, private service : NurseService) {
+  constructor(private router: Router, private fb : FormBuilder, private service : NurseService, private dialog: MatDialog) {
   }
   ngOnInit(): void {
     this.nurseForm = this.fb.group({
@@ -28,6 +30,15 @@ export class AddNurseComponent implements OnInit{
       phone_no: ['']
     })
   }
+
+  openDialog(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(AddedSnackBarComponent, {
+      width: '350px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+  }
+
   isLoading = false
   nurse !: Nurse
   nurseForm!: FormGroup;
@@ -39,7 +50,8 @@ export class AddNurseComponent implements OnInit{
       if(data.status == 400 || data.status == 502){
         window.alert("something went wrong, try after later")
       }else{
-        window.alert("Added!")
+        // window.alert("Added!")
+        this.openDialog('20ms', '20ms')
         this.nurse = data
         this.isLoading = false
       }
