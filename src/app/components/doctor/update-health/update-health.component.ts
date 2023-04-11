@@ -141,9 +141,6 @@ export class UpdateHealthComponent {
       }
     })
     
-
-    
-    
     this.updateHealth.updateConclu(this.appontId, this.con).subscribe((data) => {
       this.isLoading = true
       if(data == null) {
