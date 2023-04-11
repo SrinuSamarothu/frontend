@@ -43,6 +43,8 @@ export class UpdateHealthComponent {
   isLinear = false;
   isLoading = false
   appontId !: string
+  docId !: string
+  date !: string
   ngOnInit() {
     this.activatedRoute.params.subscribe((data) => {
       this.patientId = data['pid']
@@ -60,6 +62,8 @@ export class UpdateHealthComponent {
           console.log(history);
           // console.log(history.basic[0].appointment_Id, "    ", this.appointment_Id)
           if(history.moreInfo[0].appointment_Id == this.appontId){
+            this.docId = history.moreInfo[0].doctor_Id
+            this.date = history.moreInfo[0].date_Time
             this.currentHealth = history
           }
         })
@@ -92,6 +96,7 @@ export class UpdateHealthComponent {
   updateTest(aid : string) {
     this.test = {
       appointment_Id : this.appontId,
+      Health_Id : this.patientId,
       test : this.secondFormGroup.getRawValue().test,
       result : this.secondFormGroup.getRawValue().result
     }
@@ -114,7 +119,9 @@ export class UpdateHealthComponent {
     this.con = {
       appointment_Id : this.appontId,
       patient_Id : this.patientId,
-      conclusion : this.thirdFormGroup.getRawValue().suggestion
+      conclusion : this.thirdFormGroup.getRawValue().suggestion,
+      doctor_Id : this.docId,
+      date_Time: this.date
     }
 
     
@@ -139,6 +146,7 @@ export class UpdateHealthComponent {
 
 export interface Test{
   appointment_Id: string | null,
+  Health_Id : string |null,
   test: string | null,
   result: string | null
 }
@@ -146,5 +154,7 @@ export interface Test{
 export interface conclusion{
   patient_Id: string | null,
   appointment_Id: string | null,
-  conclusion: string | null
+  conclusion: string | null,
+  doctor_Id : string | null,
+  date_Time : string | null
 }
