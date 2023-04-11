@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
-import { LoginService, PatientInfo } from 'src/app/components/login.service';
+import { LoginService, PatientInfo, updatePatient } from 'src/app/components/login.service';
 
 @Component({
   selector: 'app-update-profile',
@@ -40,14 +40,24 @@ export class UpdateProfileComponent implements OnInit {
       state: [''],      
     })
   }
-
   updateData(){
+    let data : updatePatient = {
+      adressLine: this.updateForm.getRawValue().adressLine,
+      fullname: this.updateForm.getRawValue().fullname,
+      age: Number(this.updateForm.getRawValue().age),
+      gender: this.updateForm.getRawValue().gender,
+      email:  String(window.localStorage.getItem('pEmail')), 
+      pasword: this.updateForm.getRawValue().pasword,
+      phone: Number(this.updateForm.getRawValue().gender),
+      state: this.updateForm.getRawValue().state,
+      city: this.updateForm.getRawValue().city
+    }
     console.log(this.updateForm.getRawValue())
       // patientId:"daa9a94b-157e-4130-bdbe-9e2e2847b566"
       this.PID = window.localStorage.getItem("patientId")
       this.PID?.toString()
       let newid = this.PID as unknown as Guid
-      this.patService.updatePatient(newid, this.updateForm.getRawValue()).subscribe((data)=>{
+      this.patService.updatePatient(newid, data).subscribe((data)=>{
         console.log(data)
       })
   }
