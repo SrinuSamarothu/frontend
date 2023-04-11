@@ -32,7 +32,7 @@ export class LoginService {
   }
 
   updatePatient(PID:Guid, data:any){
-    return this.http.put(`/api/PatientInfo/UpdatePatientinfo/${PID}`, data)
+    return this.http.put(`/api/PatientInfo/UpdatePatientinfo?Pat_id=${PID}`, data)
     .pipe(catchError(error=>of('err', error)))
   }
 }
