@@ -51,7 +51,7 @@
                             </div>
                             <div class="test-result">
                                 <p>{{medicine.quantity}}</p>
-                            </div>
+                            </div><hr>
                         </div>
                     </mat-card-content>
                 </mat-card>
@@ -66,7 +66,7 @@
                             <mat-label>Conducted tests</mat-label>
                             <mat-select formControlName="test">
                                 <div  *ngFor="let medicine of currentHealth.tests">
-                                    <mat-option [value]="medicine.test">{{medicine.test}}</mat-option>
+                                    <mat-option [value]="medicine.test">{{medicine.test}}</mat-option><hr>
                                 </div>
                             </mat-select>
                         </mat-form-field>
@@ -94,7 +94,7 @@
                             </div>
                             <div class="test-result">
                                 <p>{{medicine.result}}</p>
-                            </div>
+                            </div><hr>
                         </div>
                     </mat-card-content>
                 </mat-card>
@@ -114,6 +114,21 @@
                         <button mat-button matStepperPrevious>Back</button>
                         <button mat-button matStepperNext>Next</button>
                     </div>
+                    <mat-card class="test-card">
+                        <mat-card-header class="test-title">
+                            <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
+                            <mat-card-title>Suggestions</mat-card-title>
+                        </mat-card-header>
+                        <mat-divider></mat-divider>
+                        <mat-card-content>
+                            <br>
+                            <div *ngFor="let medicine of currentHealth.moreInfo" class="test-content">
+                                <div class="test-test">
+                                    <p>{{ medicine.conclusion }}</p>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
                 </div>
             </form>
         </mat-step>

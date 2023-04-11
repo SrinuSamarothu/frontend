@@ -1,10 +1,12 @@
 .form-fields{
-    position : relative;
-    margin : 2.5rem;
-    display : flex;
+    position: relative;
+    margin: 2.5rem;
+    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap : 15rem;
+    width: 800px;
+    gap: 1rem;
+    flex-direction: column-reverse;
 }
 
 .conclusion-fields{
@@ -24,7 +26,7 @@
 
 .drug-card{
     position : relative;
-    width : 35%;
+    width : 400px;
 }
 
 .test-card{
@@ -61,4 +63,5 @@
 .json-data{
     position : relative;
     margin-top: 6rem;
+    display: hidden;
 }
