@@ -40,11 +40,12 @@ export class UpdateHealthComponent {
     suggestion: ['', Validators.required],
   });
   isLinear = false;
-
-
+  isLoading = false
+  appontId !: string
   ngOnInit() {
     this.activatedRoute.params.subscribe((data) => {
-      this.patientId = data['pid'];
+      this.patientId = data['pid']
+      this.appontId = data['aid']
     })
     this.getPatientHealthRecord();
   }
@@ -52,11 +53,12 @@ export class UpdateHealthComponent {
   getPatientHealthRecord(){
     this.completeInfo.getCompleteInfo(this.patientId).subscribe((response) => {
       this.completeHistory = response.body
+      // console.log(this.completeHistory[0].moreInfo.)
       if(this.completeHistory != null){
         this.completeHistory.forEach((history : any) => {
           console.log(history);
-          console.log(history.basic[0].appointment_Id, "    ", this.appointment_Id)
-          if(history.basic[0].appointment_Id == this.appointment_Id){
+          // console.log(history.basic[0].appointment_Id, "    ", this.appointment_Id)
+          if(history.moreInfo[0].appointment_Id == this.appontId){
             this.currentHealth = history
           }
         })
@@ -66,20 +68,21 @@ export class UpdateHealthComponent {
 
   updateMedicine(aid : string) {
     this.medication = {
-      id : this.patId,
-      health_Id : this.patId,
-      appointment_Id : aid,
+      health_Id : this.patientId,
+      appointment_Id : this.appontId,
       drugs : this.firstFormGroup.getRawValue().drug,
       quantity : this.firstFormGroup.getRawValue().quantity
     }
     
-    this.updateHealth.updateMedication(aid, this.medication).subscribe((data) => {
+    this.updateHealth.updateMedication(this.appontId, this.medication).subscribe((data) => {
+      this.isLoading = true
       if(data == null) {
         console.log("Data modified");
       }
       else{
         console.log("Error occured");
       }
+      this.isLoading = false
     })
   }
 
