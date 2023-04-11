@@ -20,9 +20,9 @@ export class UpdateHealthComponent {
   patId !: string
 
   patientId !: string
-  completeHistory : any
+  completeHistory !: any
 
-  currentHealth : any
+  currentHealth !: any
 
   firstFormGroup = this._formBuilder.group({
     drug: ['', Validators.required],
