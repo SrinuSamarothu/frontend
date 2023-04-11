@@ -24,6 +24,7 @@ import { PickAppointmentsComponent } from './components/nurse/nurse-nav/pick-app
 import { CompleteHistoryComponent } from './components/patient/complete-history/complete-history.component';
 import { HistoryPatientViewComponent } from './components/patient/history-patient-view/history-patient-view.component';
 import { UpdateHealthComponent } from './components/doctor/update-health/update-health.component';
+import { UpdateProfileComponent } from './components/patient/patient-profile/update-profile/update-profile.component';
 
 
 const routes: Routes = [
@@ -107,6 +108,9 @@ const routes: Routes = [
   },
   {
     path: 'update-health/:pid/:aid', component: UpdateHealthComponent
+  },
+  {
+    path: 'update-profile', component: UpdateProfileComponent
   }
 ];
 

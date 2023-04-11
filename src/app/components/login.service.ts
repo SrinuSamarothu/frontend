@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Guid } from 'guid-typescript';
 import { Doctor } from './admin/add-doctor/doctor';
 import { Nurse } from './admin/add-nurse/nurse';
-import { Observable } from 'rxjs';
+import { Observable, catchError, of } from 'rxjs';
 
 
 @Injectable({
@@ -29,6 +29,11 @@ export class LoginService {
 
   getNurseByEmail(email:string){
     return this.http.get<Nurse>(`/api/Nurse/getByEmail?e=${email}`)
+  }
+
+  updatePatient(PID:Guid, data:any){
+    return this.http.put(`/api/PatientInfo/UpdatePatientinfo/${PID}`, data)
+    .pipe(catchError(error=>of('err', error)))
   }
 }
 

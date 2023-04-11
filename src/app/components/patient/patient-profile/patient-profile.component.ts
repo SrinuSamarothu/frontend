@@ -10,8 +10,8 @@ import { LoginService, PatientInfo } from '../../login.service';
   styleUrls: ['./patient-profile.component.css']
 })
 export class PatientProfileComponent implements OnInit{
-  pat : PatientInfo[] = []
   constructor(private router: Router, private patService : LoginService){}
+  pat : PatientInfo[] = []
   ngOnInit(): void {
     let email = window.localStorage.getItem("pEmail")
      this.patService.getPatientByEmail(email).subscribe((data) => {
@@ -22,6 +22,9 @@ export class PatientProfileComponent implements OnInit{
   }
   goBack(){
     this.router.navigate(['patient-dashboard'])
+  }
+  navToUpdate(){
+    this.router.navigate(['update-profile'])
   }
   patients  : Patient[] = [
     {
