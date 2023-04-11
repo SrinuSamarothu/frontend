@@ -116,13 +116,31 @@ export class UpdateHealthComponent {
   }
 
   updateCon(aid : string) {
-    this.con = {
-      appointment_Id : this.appontId,
-      patient_Id : this.patientId,
-      conclusion : this.thirdFormGroup.getRawValue().suggestion,
-      doctor_Id : this.docId,
-      date_Time: this.date
-    }
+    let DID = ''
+    let Date = ''
+    this.completeInfo.getCompleteInfo(this.patientId).subscribe((response) => {
+      this.completeHistory = response.body
+      // console.log(this.completeHistory[0].moreInfo.)
+      if(this.completeHistory != null){
+        this.completeHistory.forEach((history : any) => {
+          console.log(history);
+          // console.log(history.basic[0].appointment_Id, "    ", this.appointment_Id)
+          if(history.moreInfo[0].appointment_Id == this.appontId){
+            DID = history.moreInfo[0].doctor_Id
+            Date = history.moreInfo[0].date_Time
+            this.currentHealth = history
+          }
+        })
+      }
+      this.con = {
+        appointment_Id : this.appontId,
+        patient_Id : this.patientId,
+        conclusion : this.thirdFormGroup.getRawValue().suggestion,
+        doctor_Id : DID,
+        date_Time: Date
+      }
+    })
+    
 
     
     
