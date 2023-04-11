@@ -1,1 +1,24 @@
-<p>previous-appointments works!</p>
+<div *ngFor="let a of appot; let i = index">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Appointment {{i+1}}</mat-card-title>
+      <mat-card-subtitle>{{a}}</mat-card-subtitle>
+    </mat-card-header>
+    <div *ngIf="a.status == 0">
+      <div class="dot" style="color: yellow;"></div>
+      <span>Pending</span>
+    </div>  
+    <div *ngIf="a.status == 1">
+      <div class="dot" style="color: green;"></div>
+      <span>Accepted</span>
+    </div>  
+    <div *ngIf="a.status == 2" >
+      <div class="dot" style="color: red;"></div>
+      <span>Rejected</span>
+    </div>    
+    <div *ngIf="a.status == 4" >
+      <div class="dot" style="color: blue;"></div>
+      <span>Completed</span>
+    </div>  
+  </mat-card>
+</div>

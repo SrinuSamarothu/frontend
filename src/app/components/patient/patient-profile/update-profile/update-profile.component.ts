@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
 import { LoginService, PatientInfo, updatePatient } from 'src/app/components/login.service';
+import { AddedSnackBarComponent } from 'src/app/components/doctor/added-snack-bar/added-snack-bar.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-update-profile',
@@ -10,10 +12,15 @@ import { LoginService, PatientInfo, updatePatient } from 'src/app/components/log
   styleUrls: ['./update-profile.component.css']
 })
 export class UpdateProfileComponent implements OnInit {
-  constructor(private router : Router, private fb: FormBuilder, private patService : LoginService){}
+  constructor(private router : Router, private fb: FormBuilder, private patService : LoginService, private _snackBar: MatSnackBar){}
   
   navToDash(){
     this.router.navigate(['patient-dashboard'])
+  }
+  openSnackBar() {
+    this._snackBar.openFromComponent(AddedSnackBarComponent, {
+      duration: 2500,
+    });
   }
   isLoading = false
   updateForm !: FormGroup
@@ -23,8 +30,10 @@ export class UpdateProfileComponent implements OnInit {
   ngOnInit(): void {
     let email = window.localStorage.getItem("pEmail")
      this.patService.getPatientByEmail(email).subscribe((data) => {
+      this.isLoading = true
         data.forEach(p=>{
           this.pat.push(p)
+          this.isLoading = false
         })
      });
 
@@ -41,6 +50,7 @@ export class UpdateProfileComponent implements OnInit {
     })
   }
   updateData(){
+    this.isLoading = true
     let data : updatePatient = {
       adressLine: this.updateForm.getRawValue().adressLine,
       fullname: this.updateForm.getRawValue().fullname,
@@ -58,7 +68,10 @@ export class UpdateProfileComponent implements OnInit {
       this.PID?.toString()
       let newid = this.PID as unknown as Guid
       this.patService.updatePatient(newid, data).subscribe((data)=>{
-        console.log(data)
+        this.isLoading = false
+        if(data.status != 400 || data.status != 404 || data.status != 401){
+          this.openSnackBar()
+        }
       })
   }
 }
