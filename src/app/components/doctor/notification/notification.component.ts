@@ -100,6 +100,18 @@ export class NotificationComponent implements OnInit {
     this.route.navigate(['add-patient-health', name, PID, AID]);
   }
 
+  navToUpdateRecord(PID : Guid){
+    let AID: Guid = Guid.create()
+    let name: string = ''
+    this.patientByAppointments.forEach(pba => {
+      if (pba.patient.patId == PID) {
+        name = pba.patient.fullname
+        AID = pba.appointment.appointmentId
+      }
+    })
+    this.route.navigate(['update-health', name, PID, AID]);
+  }
+
   appointmentdoctor: AppointmentDoctor[] = [];
   todayAppointment: AppointmentDoctor[] = [];
   appointmentpatient!: string[] | undefined[];
