@@ -76,7 +76,7 @@ export class UpdateProfileComponent implements OnInit {
       })
       
   }
-
+  
   updatePassword(){
     let data1 : upw = {
       loginId: String(Guid.create()),
@@ -84,9 +84,11 @@ export class UpdateProfileComponent implements OnInit {
       password: this.updateForm.getRawValue().pasword, 
     }
     if(this.updateForm.getRawValue().pasword != "" || this.updateForm.getRawValue().pasword != " " || this.updateForm.getRawValue().pasword != null){
-      this.patService.updatePassword(data1).subscribe(res=>{
-        console.log(res)
-      })
+      if(data1.password != "" || data1.password != null){
+        this.patService.updatePassword(data1).subscribe(res=>{
+          console.log(res)
+        })
+      }
     }
   }
 }
