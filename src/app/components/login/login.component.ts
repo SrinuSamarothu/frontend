@@ -90,6 +90,7 @@ export class LoginComponent implements OnInit{
           window.localStorage.setItem("pPassword", this.loginForm.getRawValue().password.toString())
           this.loginService.getPatientByEmail(this.loginForm.getRawValue().email).subscribe(data=>{
             window.localStorage.setItem("patientId", String(data[0].patId))
+            window.localStorage.setItem("pName", String(data[0].fullname))
           })
           this.router.navigate(['/patient-dashboard'])
           console.log(data)

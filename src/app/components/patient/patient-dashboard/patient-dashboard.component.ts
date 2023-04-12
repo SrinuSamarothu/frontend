@@ -25,12 +25,12 @@ export class PatientDashboardComponent implements OnInit, AfterViewInit {
   
   
   patientInfo!: PatientInfo[]
-  P_name!: string | undefined
+  P_name = window.localStorage.getItem("pName")
   p_id !: Guid | undefined
   isLoading = false
   
   ngOnInit(): void {
-    this.P_name = window.localStorage.getItem('pEmail')?.split('@')[0];
+    // this.P_name = window.localStorage.getItem('pEmail')?.split('@')[0];
     let email = window.localStorage.getItem('pEmail');
     this.patService.getPatientByEmail(email).subscribe((data) => {
       this.patientInfo = data
