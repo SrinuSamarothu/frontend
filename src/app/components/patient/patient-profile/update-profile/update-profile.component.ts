@@ -83,10 +83,10 @@ export class UpdateProfileComponent implements OnInit {
       email: String(window.localStorage.getItem('pEmail')),
       password: this.updateForm.getRawValue().pasword, 
     }
-    console.log(this.updateForm.getRawValue().pasword)
+    console.log(this.updateForm.getRawValue().pasword.toString())
     
-    if(this.updateForm.getRawValue().pasword !== "" || this.updateForm.getRawValue().pasword !== " " || this.updateForm.getRawValue().pasword !== null){
-      if(data1.password !== "" || data1.password !== null || this.updateForm.getRawValue().pasword != '<empty string>'){
+    if(this.updateForm.getRawValue().pasword.toString() !== "" || this.updateForm.getRawValue().pasword.toString() !== " " || this.updateForm.getRawValue().pasword.toString() !== null){
+      if(data1.password.toString() !== "" || data1.password.toString() !== null || this.updateForm.getRawValue().pasword != '<empty string>'){
         this.patService.updatePassword(data1).subscribe(res=>{
           console.log(res)
         })
