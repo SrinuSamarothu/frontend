@@ -10,7 +10,7 @@ RUN npm i && npm run build
 # FROM nginx:latest
 
 # Stage 2
-FROM nginx:1.17.1-alpine
+FROM nginx:latest
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-step /app/dist/hms /usr/share/nginx/html
 
