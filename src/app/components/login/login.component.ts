@@ -92,9 +92,9 @@ export class LoginComponent implements OnInit{
             window.localStorage.setItem("patientId", String(data[0].patId))
             window.localStorage.setItem("pName", String(data[0].fullname))
           })
-          this.router.navigate(['/patient-dashboard'])
           console.log(data)
           this.isLoading = false
+          this.router.navigate(['/patient-dashboard'])  
         }
       })
       
