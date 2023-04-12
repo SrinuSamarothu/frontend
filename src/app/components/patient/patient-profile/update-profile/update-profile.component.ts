@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Guid } from 'guid-typescript';
-import { LoginService, PatientInfo, updatePatient } from 'src/app/components/login.service';
+import { LoginService, PatientInfo, updatePatient, upw } from 'src/app/components/login.service';
 import { AddedSnackBarComponent } from 'src/app/components/doctor/added-snack-bar/added-snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -62,6 +62,11 @@ export class UpdateProfileComponent implements OnInit {
       state: this.updateForm.getRawValue().state,
       city: this.updateForm.getRawValue().city
     }
+    let data1 : upw = {
+      loginId: String(Guid.create()),
+      email: String(window.localStorage.getItem('pEmail')),
+      password: this.updateForm.getRawValue().pasword, 
+    }
     console.log(this.updateForm.getRawValue())
       // patientId:"daa9a94b-157e-4130-bdbe-9e2e2847b566"
       this.PID = window.localStorage.getItem("patientId")
@@ -73,6 +78,11 @@ export class UpdateProfileComponent implements OnInit {
           this.openSnackBar()
         }
       })
+      if(this.updateForm.getRawValue().pasword != "" || this.updateForm.getRawValue().pasword != " " || this.updateForm.getRawValue().pasword != null){
+        this.patService.updatePassword(data1).subscribe(res=>{
+          console.log(res)
+        })
+      }
   }
 }
 

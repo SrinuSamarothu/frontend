@@ -75,39 +75,42 @@ export class LoginComponent implements OnInit{
   isLoading = false
   hide = true
   patientLogin(){
-    // console.log(this.loginForm)
-    // this.isLoading = true
-    // this.PatientloginService.getUser(this.loginForm.getRawValue().email, this.loginForm.getRawValue().password)
-    //   .subscribe((data) => {
-    //     // console.log(data)
-    //     if(data.status == 400){
-    //       window.alert("Email and Password doesnt match, tryagain")
-    //       this.isLoading = false
-    //     }
-    //     else if(data == 1){
-    //       //window.alert("Account with this email already exists, please Login!")
-    //       window.localStorage.setItem("pEmail", this.loginForm.getRawValue().email.toString())
-    //       window.localStorage.setItem("pPassword", this.loginForm.getRawValue().password.toString())
-    //       this.router.navigate(['/patient-dashboard'])
-    //       console.log(data)
-    //       this.isLoading = false
-    //     }
-    //   })
-      
-      this.loginService.getPatientByEmail(this.loginForm.getRawValue().email).subscribe((data)=>{
-        this.isLoading = true
-        if(data[0].email == this.loginForm.getRawValue().email && data[0].pasword ==  this.loginForm.getRawValue().password){
-          window.localStorage.setItem("pEmail", this.loginForm.getRawValue().email.toString())
-          window.localStorage.setItem("pPassword", this.loginForm.getRawValue().password.toString())
-          window.localStorage.setItem("patientId", String(data[0].patId))
-          this.router.navigate(['/patient-dashboard'])
-          this.isLoading = false
-        }
-        else{
+    console.log(this.loginForm)
+    this.isLoading = true
+    this.PatientloginService.getUser(this.loginForm.getRawValue().email, this.loginForm.getRawValue().password)
+      .subscribe((data) => {
+        // console.log(data)
+        if(data.status == 400){
           window.alert("Email and Password doesnt match, tryagain")
           this.isLoading = false
         }
+        else if(data == 1){
+          //window.alert("Account with this email already exists, please Login!")
+          window.localStorage.setItem("pEmail", this.loginForm.getRawValue().email.toString())
+          window.localStorage.setItem("pPassword", this.loginForm.getRawValue().password.toString())
+          this.loginService.getPatientByEmail(this.loginForm.getRawValue().email).subscribe(data=>{
+            window.localStorage.setItem("patientId", String(data[0].patId))
+          })
+          this.router.navigate(['/patient-dashboard'])
+          console.log(data)
+          this.isLoading = false
+        }
       })
+      
+      // this.loginService.getPatientByEmail(this.loginForm.getRawValue().email).subscribe((data)=>{
+      //   this.isLoading = true
+      //   if(data[0].email == this.loginForm.getRawValue().email && data[0].pasword ==  this.loginForm.getRawValue().password){
+      //     window.localStorage.setItem("pEmail", this.loginForm.getRawValue().email.toString())
+      //     window.localStorage.setItem("pPassword", this.loginForm.getRawValue().password.toString())
+      //     window.localStorage.setItem("patientId", String(data[0].patId))
+      //     this.router.navigate(['/patient-dashboard'])
+      //     this.isLoading = false
+      //   }
+      //   else{
+      //     window.alert("Email and Password doesnt match, tryagain")
+      //     this.isLoading = false
+      //   }
+      // })
   }
 
 }

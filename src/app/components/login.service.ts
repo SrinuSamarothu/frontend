@@ -35,6 +35,18 @@ export class LoginService {
     return this.http.put(`/api/PatientInfo/UpdatePatientinfo?Pat_id=${PID}`, data)
     .pipe(catchError(error=>of('err', error)))
   }
+
+  updatePassword(data:upw){
+    return this.http.put('/api/PatientLogin/Update', data).pipe(
+      catchError(error=>of('err', error))
+    )
+  }
+}
+
+export interface upw{
+  loginId: string,
+  email: string,
+  password: string
 }
 
 export interface updatePatient{
