@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit{
         // console.log(data)
         if(data.status == 400){
           window.alert("Email and Password doesnt match, tryagain")
-          this.isLoading = false
+          // this.isLoading = false
         }
         else if(data == 1){
           //window.alert("Account with this email already exists, please Login!")
