@@ -86,7 +86,7 @@ export class UpdateProfileComponent implements OnInit {
     console.log(this.updateForm.getRawValue().pasword)
     
     if(this.updateForm.getRawValue().pasword !== "" || this.updateForm.getRawValue().pasword !== " " || this.updateForm.getRawValue().pasword !== null){
-      if(data1.password !== "" || data1.password !== null){
+      if(data1.password !== "" || data1.password !== null || this.updateForm.getRawValue().pasword != '<empty string>'){
         this.patService.updatePassword(data1).subscribe(res=>{
           console.log(res)
         })
