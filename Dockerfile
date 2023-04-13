@@ -14,4 +14,4 @@ FROM nginx:latest
 COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-step /app/dist/hms /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE 443
